@@ -1,9 +1,19 @@
 package components;
 
+import java.util.ArrayList;
+
 import components.IBook;
 
 public class Book implements IBook {
-	
+
+	public ArrayList<String> getAuthors() {
+		return authors;
+	}
+
+	public void setAuthors(ArrayList<String> authors) {
+		this.authors = authors;
+	}
+
 	public String getISBN() {
 		return ISBN;
 	}
@@ -44,12 +54,12 @@ public class Book implements IBook {
 		this.price = price;
 	}
 	
-	public int getNoOfBooks() {
-		return NoOfBooks;
+	public int getNo_Of_Books() {
+		return No_Of_Books;
 	}
-	
-	public void setNoOfBooks(int noOfBooks) {
-		NoOfBooks = noOfBooks;
+
+	public void setNo_Of_Books(int no_Of_Books) {
+		No_Of_Books = no_Of_Books;
 	}
 	
 	public cat getCategory() {
@@ -72,5 +82,7 @@ public class Book implements IBook {
 	
 	private int price;
 	
-	private int NoOfBooks;
+	private int No_Of_Books;
+	
+	private ArrayList<String> authors;
 }

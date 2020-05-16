@@ -1,5 +1,7 @@
 package components;
 
+import java.util.ArrayList;
+
 public interface IBook {
 	
 	public enum cat {Science, Art, Religion, History, Geography}
@@ -24,11 +26,15 @@ public interface IBook {
 	
 	public void setPrice(int price);
 	
-	public int getNoOfBooks();
-	
-	public void setNoOfBooks(int noOfBooks);
+	public int getNo_Of_Books();
+
+	public void setNo_Of_Books(int no_Of_Books);
 	
 	public cat getCategory();
 
 	public void setCategory(cat category);
+
+	public ArrayList<String> getAuthors();
+
+	public void setAuthors(ArrayList<String> authors);
 }
