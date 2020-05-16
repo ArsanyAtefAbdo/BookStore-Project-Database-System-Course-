@@ -17,4 +17,14 @@ public interface IUser {
 	public String getEmail();
 
 	public void setEmail(String email);
+	
+	/**
+	 * @return the cart
+	 */
+	public Cart getCart();
+
+	/**
+	 * @param cart the cart to set
+	 */
+	public void setCart(Cart cart);
 }

@@ -35,6 +35,20 @@ public class User extends Person implements IUser{
 	public void setEmail(String email) {
 		this.email = email;
 	}
+	
+	/**
+	 * @return the cart
+	 */
+	public Cart getCart() {
+		return cart;
+	}
+
+	/**
+	 * @param cart the cart to set
+	 */
+	public void setCart(Cart cart) {
+		this.cart = cart;
+	}
 
 	private String password;
 	
@@ -43,4 +57,6 @@ public class User extends Person implements IUser{
 	private String last_name;
 	
 	private String email;
+	
+	private Cart cart;
 }
