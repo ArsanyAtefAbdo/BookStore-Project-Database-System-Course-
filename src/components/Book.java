@@ -52,7 +52,15 @@ public class Book implements IBook {
 		NoOfBooks = noOfBooks;
 	}
 	
-	public enum category {Science, Art, Religion, History, Geography}
+	public cat getCategory() {
+		return category;
+	}
+
+	public void setCategory(cat category) {
+		this.category = category;
+	}
+	
+	private cat category;
 	
 	private String ISBN;
 	

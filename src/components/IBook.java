@@ -1,6 +1,8 @@
 package components;
 
 public interface IBook {
+	
+	public enum cat {Science, Art, Religion, History, Geography}
 
 	public String getISBN();
 	
@@ -25,4 +27,8 @@ public interface IBook {
 	public int getNoOfBooks();
 	
 	public void setNoOfBooks(int noOfBooks);
+	
+	public cat getCategory();
+
+	public void setCategory(cat category);
 }
