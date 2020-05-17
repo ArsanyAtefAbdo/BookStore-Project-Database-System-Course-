@@ -76,7 +76,7 @@
             <Font size="14.0" />
          </font>
       </JFXTextField>
-      <JFXTextField layoutX="281.0" layoutY="229.0" prefHeight="30.0" prefWidth="367.0" promptText="Address" style="-fx-background-color: #ffffff;">
+      <JFXTextField layoutX="281.0" layoutY="229.0" prefHeight="30.0" prefWidth="367.0" promptText="Shipping Address" style="-fx-background-color: #ffffff;">
          <font>
             <Font size="14.0" />
          </font>
