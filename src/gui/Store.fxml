@@ -1,20 +1,129 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import com.jfoenix.controls.JFXTabPane?>
+<?import com.jfoenix.controls.JFXTextField?>
 <?import javafx.scene.control.Tab?>
-<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" tabClosingPolicy="UNAVAILABLE" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
-  <tabs>
-    <Tab text="Untitled Tab 1">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-      </content>
-    </Tab>
-    <Tab text="Untitled Tab 2">
-      <content>
-        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-      </content>
-    </Tab>
-  </tabs>
-</TabPane>
+<JFXTabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="750.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <tabs>
+      <Tab text="           Cart             ">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="692.0" layoutY="7.0" style="-fx-background-color: #ff0000; -fx-background-radius: 10;" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Images/Log_out.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXListView layoutX="22.0" layoutY="44.0" prefHeight="370.0" prefWidth="714.0" />
+                  <JFXButton layoutX="646.0" layoutY="422.0" prefWidth="90.0" style="-fx-background-color: #1fd81f; -fx-background-radius: 10;" text="Check Out">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton layoutX="548.0" layoutY="422.0" prefWidth="90.0" style="-fx-background-color: #ffc210; -fx-background-radius: 10;" text="Cancel">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </JFXButton>
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="504.0" layoutY="423.0" prefHeight="26.0" prefWidth="28.0" style="-fx-background-color: #ff0000; -fx-background-radius: 15;" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="23.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Images/bin.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children></AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="          Find Books         ">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="692.0" layoutY="7.0" style="-fx-background-color: #ff0000; -fx-background-radius: 10;" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Images/Log_out.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXListView layoutX="14.0" layoutY="51.0" prefHeight="387.0" prefWidth="665.0" />
+                  <JFXTextField layoutX="14.0" layoutY="8.0" prefHeight="31.0" prefWidth="624.0" promptText="Find Books" />
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="693.0" layoutY="368.0" style="-fx-background-color: #0ebf0e; -fx-background-radius: 10;" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Images/plus.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="693.0" layoutY="404.0" style="-fx-background-color: #f1c232; -fx-background-radius: 10;" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Images/minus.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="648.0" layoutY="8.0" style="-fx-background-color: #7bc9ff; -fx-background-radius: 10;" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Images/search.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children></AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="            Settings            ">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <JFXButton contentDisplay="CENTER" layoutX="692.0" layoutY="7.0" style="-fx-background-color: #ff0000; -fx-background-radius: 10;" text=" " textAlignment="CENTER">
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Images/Log_out.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children></AnchorPane>
+        </content>
+      </Tab>
+      <Tab text="        Manage Store        ">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+               <children>
+                  <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="692.0" layoutY="7.0" prefHeight="27.0" prefWidth="31.0" style="-fx-background-color: #ff0000; -fx-background-radius: 10;" text=" ">
+                     <graphic>
+                        <ImageView fitHeight="22.0" fitWidth="28.0" pickOnBounds="true" preserveRatio="true">
+                           <image>
+                              <Image url="@../../Images/Log_out.png" />
+                           </image>
+                        </ImageView>
+                     </graphic>
+                  </JFXButton>
+               </children></AnchorPane>
+        </content>
+      </Tab>
+   </tabs>
+</JFXTabPane>
