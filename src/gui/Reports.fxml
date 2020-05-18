@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import com.jfoenix.controls.JFXListView?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane prefHeight="318.0" prefWidth="700.0" style="-fx-background-color: #434856; -fx-background-radius: 10; -fx-border-color: #181c27; -fx-border-width: 5; -fx-border-radius: 10;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+   <children>
+      <Label layoutX="12.0" layoutY="13.0" text="Total Sales Last Month:" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <JFXListView layoutX="12.0" layoutY="33.0" prefHeight="222.0" prefWidth="200.0" />
+      <Line endX="-100.0" endY="252.0" layoutX="328.0" layoutY="23.0" startX="-100.0" startY="-10.0" />
+      <Label layoutX="245.0" layoutY="13.0" text="Top Five Customers:" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <JFXListView layoutX="245.0" layoutY="33.0" prefHeight="222.0" prefWidth="200.0" />
+      <Line endX="-100.0" endY="252.0" layoutX="561.0" layoutY="23.0" startX="-100.0" startY="-10.0" />
+      <Label layoutX="478.0" layoutY="13.0" text="Top Ten Selling Books :" textFill="WHITE">
+         <font>
+            <Font size="14.0" />
+         </font>
+      </Label>
+      <JFXListView layoutX="478.0" layoutY="33.0" prefHeight="222.0" prefWidth="200.0" />
+      <JFXButton layoutX="310.0" layoutY="271.0" prefHeight="32.0" prefWidth="71.0" style="-fx-background-color: #429cee; -fx-background-radius: 10;" text="Done" textAlignment="CENTER">
+         <font>
+            <Font size="15.0" />
+         </font>
+         <effect>
+            <DropShadow />
+         </effect>
+      </JFXButton>
+   </children>
+</AnchorPane>
