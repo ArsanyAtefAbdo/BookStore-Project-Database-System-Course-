@@ -91,10 +91,5 @@
             <Font size="18.0" />
          </font>
       </Label>
-      <JFXButton buttonType="RAISED" layoutX="642.0" layoutY="5.0" prefHeight="30.0" prefWidth="34.0" style="-fx-background-color: #ff0000; -fx-background-radius: 10; -fx-border-width: 2;" text="X" textAlignment="CENTER" textFill="WHITE" textOverrun="WORD_ELLIPSIS">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </JFXButton>
    </children>
 </AnchorPane>
