@@ -68,12 +68,16 @@ public class MySqlConnection implements IMySqlConnection {
 			for (Entry<String, Pair<String, String>> e:conditions.entrySet()) {
 				sqlBuilder.append(e.getKey());
 				sqlBuilder.append(e.getValue().getKey());
+				sqlBuilder.append("\'");
 				sqlBuilder.append(e.getValue().getValue());
+				sqlBuilder.append("\'");
 				sqlBuilder.append(" AND");
 			}
-			sqlBuilder.delete(sqlBuilder.length() - 4, sqlBuilder.length() - 1);
+			sqlBuilder.delete(sqlBuilder.length() - 4, sqlBuilder.length());
 		}
 		try {
+			
+			System.out.println(sqlBuilder.toString());
 			rs = stmt.executeQuery(sqlBuilder.toString());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -90,9 +94,9 @@ public class MySqlConnection implements IMySqlConnection {
 		sqlBuilder.append("insert into " + table + " (");
 		
 		if (!attributes.isEmpty()) {
-			if (attributes.containsKey("authors")) {
-				temp = attributes.get("auhtors");
-				attributes.remove("authors");
+			if (attributes.containsKey("author")) {
+				temp = attributes.get("author");
+				attributes.remove("author");
 			}
 			for (Entry<String, String> a:attributes.entrySet()) {
 				sqlBuilder.append(a.getKey() + ", ");
@@ -102,12 +106,15 @@ public class MySqlConnection implements IMySqlConnection {
 			sqlBuilder.append(" values (");
 			
 			for (Entry<String, String> a:attributes.entrySet()) {
-				sqlBuilder.append(a.getValue() + ", ");
+				sqlBuilder.append("\'");
+				sqlBuilder.append(a.getValue() + "\', ");
 			}
 			
 			sqlBuilder.replace(sqlBuilder.length() - 2, sqlBuilder.length() - 1, ")");
 			
 			try {
+				System.out.println(sqlBuilder.toString());
+				
 				stmt.executeUpdate(sqlBuilder.toString());
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
@@ -117,12 +124,15 @@ public class MySqlConnection implements IMySqlConnection {
 			
 			if (!temp.isEmpty()) {
 				String [] authors = temp.split(",");
-				for (int i = 0; i < authors.length - 1; i++) {
+				for (int i = 0; i < authors.length; i++) {
 					sqlBuilder = new StringBuilder();
-					sqlBuilder.append("insert into authors values (");
-					sqlBuilder.append(attributes.get("ISBN") + ", ");
-					sqlBuilder.append(authors[i] + ")");
+					sqlBuilder.append("insert into authors values (\'");
+					sqlBuilder.append(attributes.get("ISBN") + "\', \'");
+					sqlBuilder.append(authors[i] + "\')");
 					try {
+						
+						System.out.println(sqlBuilder.toString());
+						
 						stmt.executeUpdate(sqlBuilder.toString());
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
@@ -145,24 +155,28 @@ public class MySqlConnection implements IMySqlConnection {
 		
 		if (!attributes.isEmpty()) {
 			
-//			if ("book".equals(table)) {
-//				sqlBuilder.append(" natural join authors");
-//			}
+			if ("book".equals(table)) {
+				sqlBuilder.append(" natural join authors ");
+			}
 			
 			sqlBuilder.append("set ");
 			for (Entry<String, String> a:attributes.entrySet()) {
-				sqlBuilder.append(a.getKey() + "=" + a.getValue() + ", ");
+				sqlBuilder.append(a.getKey() + "=\'" + a.getValue() + "\', ");
 			}
 			sqlBuilder.delete(sqlBuilder.length() - 2, sqlBuilder.length() - 1);
-			sqlBuilder.append("where");
+			sqlBuilder.append("where ");
 			for (Entry<String, Pair<String, String>> e:conditions.entrySet()) {
 				sqlBuilder.append(e.getKey());
 				sqlBuilder.append(e.getValue().getKey());
+				sqlBuilder.append("\'");
 				sqlBuilder.append(e.getValue().getValue());
+				sqlBuilder.append("\'");
 				sqlBuilder.append(" AND");
 			}
-			sqlBuilder.delete(sqlBuilder.length() - 4, sqlBuilder.length() - 1);
+			sqlBuilder.delete(sqlBuilder.length() - 4, sqlBuilder.length());
 			try {
+				
+				System.out.println(sqlBuilder.toString());
 				stmt.executeUpdate(sqlBuilder.toString());
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
@@ -177,24 +191,30 @@ public class MySqlConnection implements IMySqlConnection {
 	public boolean delete_item(String table, HashMap<String, Pair<String, String>> conditions) {
 		// TODO Auto-generated method stub
 		StringBuilder sqlBuilder = new StringBuilder();
-		sqlBuilder.append("delete from ");
-		sqlBuilder.append(table);
+		sqlBuilder.append("delete ");
+		
+		if ("book".equals(table)) {
+			sqlBuilder.append("book, authors from (book natural join authors) ");
+		} else {
+			sqlBuilder.append("from ");
+			sqlBuilder.append(table);
+		}
 		
 		if (!conditions.isEmpty()) {
-			
-//			if ("book".equals(table)) {
-//				sqlBuilder.append(" natural join authors ");
-//			}
-			
-			sqlBuilder.append("where ");
+			sqlBuilder.append(" where ");
 			for (Entry<String, Pair<String, String>> e:conditions.entrySet()) {
 				sqlBuilder.append(e.getKey());
 				sqlBuilder.append(e.getValue().getKey());
+				sqlBuilder.append("\'");
 				sqlBuilder.append(e.getValue().getValue());
+				sqlBuilder.append("\'");
 				sqlBuilder.append(" AND");
 			}
-			sqlBuilder.delete(sqlBuilder.length() - 4, sqlBuilder.length() - 1);
+			sqlBuilder.delete(sqlBuilder.length() - 4, sqlBuilder.length());
 			try {
+				
+				System.out.println(sqlBuilder.toString());
+				
 				stmt.executeUpdate(sqlBuilder.toString());
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
