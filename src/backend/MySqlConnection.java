@@ -43,22 +43,6 @@ public class MySqlConnection implements IMySqlConnection {
 		return instance;
 	}
 	
-
-//	/*
-//	 * function to execute query
-//	 */
-//	public ResultSet executeQuery(String string) {
-//		// TODO Auto-generated method stub
-//		ResultSet rs = null;
-//		try {
-//			rs = stmt.executeQuery(string);
-//		} catch (SQLException e) {
-//			// TODO Auto-generated catch block
-//			printSQLException(e);
-//		}
-//		return rs;
-//	}
-	
 	public ResultSet search_item(String table, ArrayList<String> attributes,
 			HashMap<String, Pair<String, String>> conditions) {
 		// TODO Auto-generated method stub
