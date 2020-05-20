@@ -8,35 +8,35 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane minHeight="300.0" minWidth="300.0" prefHeight="395.0" prefWidth="682.0" style="-fx-background-color: #2d3447; -fx-background-radius: 10; -fx-border-color: #202534; -fx-border-radius: 10; -fx-border-width: 4;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane minHeight="300.0" minWidth="300.0" prefHeight="395.0" prefWidth="682.0" style="-fx-background-color: #2d3447; -fx-background-radius: 10; -fx-border-color: #202534; -fx-border-radius: 10; -fx-border-width: 4;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.LoginController">
    <children>
-      <JFXTextField layoutX="25.0" layoutY="146.0" prefHeight="25.0" prefWidth="217.0" promptText="User Name" style="-fx-background-color: #ffffff;">
+      <JFXTextField fx:id="logInUserName" layoutX="25.0" layoutY="146.0" prefHeight="25.0" prefWidth="217.0" promptText="User Name" style="-fx-background-color: #ffffff;">
          <font>
             <Font size="14.0" />
          </font>
       </JFXTextField>
-      <JFXPasswordField layoutX="25.0" layoutY="207.0" prefHeight="25.0" prefWidth="217.0" promptText="Password" style="-fx-background-color: #ffffff;">
+      <JFXPasswordField fx:id="logInPass" layoutX="25.0" layoutY="207.0" prefHeight="25.0" prefWidth="217.0" promptText="Password" style="-fx-background-color: #ffffff;">
          <font>
             <Font size="14.0" />
          </font>
       </JFXPasswordField>
-      <JFXButton buttonType="RAISED" layoutX="82.0" layoutY="282.0" prefHeight="40.0" prefWidth="104.0" style="-fx-background-color: #3481ff; -fx-background-radius: 10; -fx-border-width: 2;" text="Log In" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+      <JFXButton fx:id="logInBtn" buttonType="RAISED" layoutX="82.0" layoutY="282.0" onAction="#logInAct" prefHeight="40.0" prefWidth="104.0" style="-fx-background-color: #3481ff; -fx-background-radius: 10; -fx-border-width: 2;" text="Log In" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
          <font>
             <Font size="18.0" />
          </font>
       </JFXButton>
       <Line endX="-83.0" endY="293.0" layoutX="343.0" layoutY="76.0" startX="-83.0" startY="-50.0" />
-      <JFXTextField layoutX="281.0" layoutY="54.0" prefHeight="30.0" prefWidth="175.0" promptText="First Name" style="-fx-background-color: #ffffff;">
+      <JFXTextField fx:id="signUpFirstName" layoutX="281.0" layoutY="54.0" prefHeight="30.0" prefWidth="175.0" promptText="First Name" style="-fx-background-color: #ffffff;">
          <font>
             <Font size="14.0" />
          </font>
       </JFXTextField>
-      <JFXPasswordField layoutX="281.0" layoutY="272.0" prefHeight="30.0" prefWidth="175.0" promptText="Password" style="-fx-background-color: #ffffff;">
+      <JFXPasswordField fx:id="signUpPass" layoutX="281.0" layoutY="272.0" prefHeight="30.0" prefWidth="175.0" promptText="Password" style="-fx-background-color: #ffffff;">
          <font>
             <Font size="14.0" />
          </font>
       </JFXPasswordField>
-      <JFXPasswordField layoutX="473.0" layoutY="272.0" prefHeight="30.0" prefWidth="175.0" promptText="Confirm Password" style="-fx-background-color: #ffffff;">
+      <JFXPasswordField fx:id="signUpConfirm" layoutX="473.0" layoutY="272.0" prefHeight="30.0" prefWidth="175.0" promptText="Confirm Password" style="-fx-background-color: #ffffff;">
          <font>
             <Font size="14.0" />
          </font>
@@ -51,45 +51,41 @@
             <Font size="24.0" />
          </font>
       </Label>
-      <JFXButton buttonType="RAISED" layoutX="413.0" layoutY="340.0" prefHeight="40.0" prefWidth="104.0" style="-fx-background-color: #3481ff; -fx-background-radius: 10; -fx-border-width: 2;" text="Sign Up" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
+      <JFXButton fx:id="signUpBtn" buttonType="RAISED" layoutX="413.0" layoutY="340.0" onAction="#signUpAct" prefHeight="40.0" prefWidth="104.0" style="-fx-background-color: #3481ff; -fx-background-radius: 10; -fx-border-width: 2;" text="Sign Up" textAlignment="CENTER" textOverrun="WORD_ELLIPSIS">
          <font>
             <Font size="18.0" />
          </font>
       </JFXButton>
-      <JFXTextField layoutX="473.0" layoutY="54.0" prefHeight="30.0" prefWidth="175.0" promptText="Last Name" style="-fx-background-color: #ffffff;">
+      <JFXTextField fx:id="signUpLastName" layoutX="473.0" layoutY="54.0" prefHeight="30.0" prefWidth="175.0" promptText="Last Name" style="-fx-background-color: #ffffff;">
          <font>
             <Font size="14.0" />
          </font>
       </JFXTextField>
-      <JFXTextField layoutX="281.0" layoutY="98.0" prefHeight="30.0" prefWidth="367.0" promptText="User Name" style="-fx-background-color: #ffffff;">
+      <JFXTextField fx:id="signUpUserName" layoutX="281.0" layoutY="98.0" prefHeight="30.0" prefWidth="367.0" promptText="User Name" style="-fx-background-color: #ffffff;">
          <font>
             <Font size="14.0" />
          </font>
       </JFXTextField>
-      <JFXTextField layoutX="281.0" layoutY="143.0" prefHeight="30.0" prefWidth="367.0" promptText="E-mail Address" style="-fx-background-color: #ffffff;">
+      <JFXTextField fx:id="signUpEmail" layoutX="281.0" layoutY="143.0" prefHeight="30.0" prefWidth="367.0" promptText="E-mail Address" style="-fx-background-color: #ffffff;">
          <font>
             <Font size="14.0" />
          </font>
       </JFXTextField>
-      <JFXTextField layoutX="281.0" layoutY="187.0" prefHeight="30.0" prefWidth="367.0" promptText="Phone Number" style="-fx-background-color: #ffffff;">
+      <JFXTextField fx:id="signUpPhone" layoutX="281.0" layoutY="187.0" prefHeight="30.0" prefWidth="367.0" promptText="Phone Number" style="-fx-background-color: #ffffff;">
          <font>
             <Font size="14.0" />
          </font>
       </JFXTextField>
-      <JFXTextField layoutX="281.0" layoutY="229.0" prefHeight="30.0" prefWidth="367.0" promptText="Shipping Address" style="-fx-background-color: #ffffff;">
+      <JFXTextField fx:id="signUpAddress" layoutX="281.0" layoutY="229.0" prefHeight="30.0" prefWidth="367.0" promptText="Shipping Address" style="-fx-background-color: #ffffff;">
          <font>
             <Font size="14.0" />
          </font>
       </JFXTextField>
-      <Label layoutX="281.0" layoutY="302.0" prefHeight="35.0" prefWidth="367.0" textFill="#ff6767">
+      <Label fx:id="signUpLabel" layoutX="281.0" layoutY="302.0" prefHeight="35.0" prefWidth="367.0" textFill="#ff6767">
          <font>
             <Font size="18.0" />
          </font>
       </Label>
-      <Label layoutX="25.0" layoutY="242.0" prefHeight="35.0" prefWidth="217.0" textFill="#ff6767">
-         <font>
-            <Font size="18.0" />
-         </font>
-      </Label>
+      <Label fx:id="logInLabel" layoutX="25.0" layoutY="242.0" prefHeight="35.0" prefWidth="217.0" textFill="#ff6767" />
    </children>
 </AnchorPane>
