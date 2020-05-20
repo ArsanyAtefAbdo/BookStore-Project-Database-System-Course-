@@ -44,7 +44,7 @@ public class BookStore implements IBookStore {
 	private IMySqlConnection mySqlConnection;
 	private SimpleDateFormat ft;
 	
-	public BookStore() {
+	private BookStore() {
 		mySqlConnection = MySqlConnection.getInstance();
 		ft = new SimpleDateFormat ("yyyy-MM-dd");
 		user = null;
