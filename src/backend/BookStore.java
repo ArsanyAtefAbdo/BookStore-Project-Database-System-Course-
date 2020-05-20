@@ -30,6 +30,16 @@ public class BookStore implements IBookStore {
 	private static String PUBLISHERS_TABLE = "publishers";
 	private static String PROMOTE_TABLE = "promote";
 	
+	
+	private static IBookStore instance = new BookStore();
+	
+	/**
+	 * @return the instance
+	 */
+	public static IBookStore getInstance() {
+		return instance;
+	}
+
 	private IUser user;
 	private IMySqlConnection mySqlConnection;
 	private SimpleDateFormat ft;
@@ -37,6 +47,7 @@ public class BookStore implements IBookStore {
 	public BookStore() {
 		mySqlConnection = MySqlConnection.getInstance();
 		ft = new SimpleDateFormat ("yyyy-MM-dd");
+		user = null;
 	}
 
 	@Override
@@ -313,5 +324,11 @@ public class BookStore implements IBookStore {
 			mySqlConnection.delete_item(PROMOTE_TABLE, conditions);
 		}
 		return true;
+	}
+
+	@Override
+	public IUser getCurrentUser() {
+		// TODO Auto-generated method stub
+		return this.user;
 	}
 }

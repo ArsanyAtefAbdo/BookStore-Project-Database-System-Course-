@@ -37,6 +37,8 @@ public interface IBookStore {
 	public HashMap<String, String> getOrders();
 	public boolean confirmOrders(ArrayList<String>ISBNs);
 	
+	IUser getCurrentUser();
+	
 	
 	
 	
