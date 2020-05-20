@@ -11,11 +11,10 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: #2d3447;" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+<AnchorPane prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: #2d3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.EditBookController">
    <children>
-      <JFXListView layoutX="24.0" layoutY="134.0" prefHeight="140.0" prefWidth="665.0" />
-      <JFXButton alignment="CENTER" contentDisplay="CENTER" layoutX="703.0" layoutY="57.0" style="-fx-background-color: #7bc9ff; -fx-background-radius: 10;" text=" ">
+      <JFXListView fx:id="booksList" layoutX="24.0" layoutY="134.0" prefHeight="140.0" prefWidth="665.0" />
+      <JFXButton fx:id="searchBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="703.0" layoutY="57.0" onAction="#searchAct" style="-fx-background-color: #7bc9ff; -fx-background-radius: 10;" text=" ">
          <graphic>
             <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -24,15 +23,15 @@
             </ImageView>
          </graphic>
       </JFXButton>
-      <JFXTextField layoutX="24.0" layoutY="41.0" prefHeight="30.0" prefWidth="120.0" promptText="Book Name" style="-fx-background-color: #ffffff;" />
-      <JFXTextField layoutX="150.0" layoutY="41.0" prefHeight="30.0" prefWidth="120.0" promptText="Publisher" style="-fx-background-color: #ffffff;" />
-      <JFXTextField layoutX="26.0" layoutY="80.0" prefHeight="30.0" prefWidth="210.0" promptText="Year Of Publication" style="-fx-background-color: #ffffff;" />
-      <JFXTextField layoutX="351.0" layoutY="80.0" prefHeight="30.0" prefWidth="210.0" promptText="Price" style="-fx-background-color: #ffffff;" />
-      <JFXTextField layoutX="400.0" layoutY="41.0" prefHeight="30.0" prefWidth="120.0" promptText="Category" style="-fx-background-color: #ffffff;" />
-      <JFXComboBox layoutX="245.0" layoutY="83.0" prefHeight="25.0" prefWidth="94.0" />
-      <JFXComboBox layoutX="573.0" layoutY="82.0" prefHeight="25.0" prefWidth="99.0" />
-      <JFXTextField layoutX="526.0" layoutY="41.0" prefHeight="30.0" prefWidth="120.0" promptText="ISBN" style="-fx-background-color: #ffffff;" />
-      <JFXTextField layoutX="274.0" layoutY="41.0" prefHeight="30.0" prefWidth="120.0" promptText="Author" style="-fx-background-color: #ffffff;" />
+      <JFXTextField fx:id="oldBookTxt" layoutX="24.0" layoutY="41.0" prefHeight="30.0" prefWidth="120.0" promptText="Book Name" style="-fx-background-color: #ffffff;" />
+      <JFXTextField fx:id="oldPubTxt" layoutX="150.0" layoutY="41.0" prefHeight="30.0" prefWidth="120.0" promptText="Publisher" style="-fx-background-color: #ffffff;" />
+      <JFXTextField fx:id="oldYearTxt" layoutX="26.0" layoutY="80.0" prefHeight="30.0" prefWidth="210.0" promptText="Year Of Publication" style="-fx-background-color: #ffffff;" />
+      <JFXTextField fx:id="oldPriceTxt" layoutX="351.0" layoutY="80.0" prefHeight="30.0" prefWidth="210.0" promptText="Price" style="-fx-background-color: #ffffff;" />
+      <JFXTextField fx:id="oldCategoryTxt" layoutX="400.0" layoutY="41.0" prefHeight="30.0" prefWidth="120.0" promptText="Category" style="-fx-background-color: #ffffff;" />
+      <JFXComboBox fx:id="yearBox" layoutX="245.0" layoutY="83.0" prefHeight="25.0" prefWidth="94.0" />
+      <JFXComboBox fx:id="priceBox" layoutX="573.0" layoutY="82.0" prefHeight="25.0" prefWidth="99.0" />
+      <JFXTextField fx:id="oldIsbnTxt" layoutX="526.0" layoutY="41.0" prefHeight="30.0" prefWidth="120.0" promptText="ISBN" style="-fx-background-color: #ffffff;" />
+      <JFXTextField fx:id="oldAuthorTxt" layoutX="274.0" layoutY="41.0" prefHeight="30.0" prefWidth="120.0" promptText="Author" style="-fx-background-color: #ffffff;" />
       <Label layoutX="25.0" layoutY="15.0" text="Find a book" textFill="WHITE">
          <font>
             <Font size="13.0" />
@@ -44,21 +43,20 @@
             <Font size="13.0" />
          </font>
       </Label>
-      <JFXTextField layoutX="24.0" layoutY="334.0" prefHeight="30.0" prefWidth="200.0" promptText="Book Title" style="-fx-background-color: #ffffff;" />
-      <JFXTextField layoutX="24.0" layoutY="440.0" prefHeight="30.0" prefWidth="200.0" promptText="Publisher" style="-fx-background-color: #ffffff;" />
-      <JFXTextField layoutX="234.0" layoutY="334.0" prefHeight="30.0" prefWidth="200.0" promptText="Year Of Publication" style="-fx-background-color: #ffffff;" />
-      <JFXTextField layoutX="234.0" layoutY="387.0" prefHeight="30.0" prefWidth="200.0" promptText="Price" style="-fx-background-color: #ffffff;" />
-      <JFXTextField layoutX="443.0" layoutY="335.0" prefHeight="30.0" prefWidth="200.0" promptText="Category" style="-fx-background-color: #ffffff;" />
-      <JFXButton layoutX="651.0" layoutY="388.0" prefHeight="29.0" prefWidth="96.0" style="-fx-background-color: #1fd81f;" text="Save">
+      <JFXTextField fx:id="newNameTxt" layoutX="24.0" layoutY="334.0" prefHeight="30.0" prefWidth="200.0" promptText="Book Title" style="-fx-background-color: #ffffff;" />
+      <JFXTextField fx:id="newPubTxt" layoutX="24.0" layoutY="435.0" prefHeight="30.0" prefWidth="200.0" promptText="Publisher" style="-fx-background-color: #ffffff;" />
+      <JFXTextField fx:id="newYearTxt" layoutX="234.0" layoutY="334.0" prefHeight="30.0" prefWidth="200.0" promptText="Year Of Publication" style="-fx-background-color: #ffffff;" />
+      <JFXTextField fx:id="newPriceTxt" layoutX="343.0" layoutY="388.0" prefHeight="30.0" prefWidth="300.0" promptText="Price" style="-fx-background-color: #ffffff;" />
+      <JFXTextField fx:id="newCategoryTxt" layoutX="443.0" layoutY="335.0" prefHeight="30.0" prefWidth="200.0" promptText="Category" style="-fx-background-color: #ffffff;" />
+      <JFXButton fx:id="saveBtn" layoutX="651.0" layoutY="388.0" prefHeight="29.0" prefWidth="96.0" style="-fx-background-color: #1fd81f;" text="Save">
          <font>
             <Font size="13.0" />
          </font>
       </JFXButton>
-      <JFXTextField layoutX="443.0" layoutY="387.0" prefHeight="30.0" prefWidth="200.0" promptText="Amount" style="-fx-background-color: #ffffff;" />
-      <JFXTextField layoutX="24.0" layoutY="388.0" prefHeight="30.0" prefWidth="200.0" promptText="Author" style="-fx-background-color: #ffffff;" />
-      <JFXTextField layoutX="234.0" layoutY="440.0" prefHeight="30.0" prefWidth="200.0" promptText="Publisher Address" style="-fx-background-color: #ffffff;" />
-      <JFXTextField layoutX="443.0" layoutY="440.0" prefHeight="30.0" prefWidth="200.0" promptText="Publisher Phone Number" style="-fx-background-color: #ffffff;" />
-      <Label layoutX="35.0" layoutY="471.0" prefHeight="17.0" prefWidth="458.0" text="Fields should not be plank" textFill="WHITE" />
+      <JFXTextField fx:id="NewAuthorTxt" layoutX="24.0" layoutY="388.0" prefHeight="30.0" prefWidth="300.0" promptText="Author" style="-fx-background-color: #ffffff;" />
+      <JFXTextField fx:id="newPubAddress" layoutX="234.0" layoutY="435.0" prefHeight="30.0" prefWidth="200.0" promptText="Publisher Address" style="-fx-background-color: #ffffff;" />
+      <JFXTextField fx:id="newPubPhone" layoutX="443.0" layoutY="435.0" prefHeight="30.0" prefWidth="200.0" promptText="Publisher Phone Number" style="-fx-background-color: #ffffff;" />
+      <Label layoutX="35.0" layoutY="471.0" prefHeight="17.0" prefWidth="458.0" text="All fields should not be plank" textFill="WHITE" />
       <Label layoutX="26.0" layoutY="471.0" prefHeight="17.0" prefWidth="16.0" text="*" textFill="WHITE" />
    </children>
 </AnchorPane>

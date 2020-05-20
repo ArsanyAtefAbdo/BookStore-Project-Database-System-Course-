@@ -15,6 +15,7 @@ public class Main extends Application {
 //			BorderPane root = new BorderPane();
 			Scene scene = new Scene(root);
 			primaryStage.setScene(scene);
+			primaryStage.setTitle("Book Store");
 			primaryStage.show();
 			primaryStage.setResizable(false);
 		} catch(Exception e) {

@@ -1,5 +1,6 @@
 package fxml;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -7,17 +8,23 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
 
+import backend.BookStore;
 import backend.IBookStore;
 import components.IUser;
 import components.User;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Label;
+import javafx.stage.Stage;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 
 public class LoginController implements Initializable {
 
-	private IBookStore myStore;
+	private IBookStore myStore = new BookStore();
 
 	@FXML
 	private JFXTextField logInUserName;
@@ -76,6 +83,29 @@ public class LoginController implements Initializable {
 				logInLabel.setText("This user doesn't exist");
 			} else {
 				//open the store.
+				try {
+					FXMLLoader loader = new FXMLLoader();
+					loader.setLocation(getClass().getResource("/fxml/Store.fxml"));
+					Parent theStore = loader.load();
+					
+					Scene storeScene = new Scene(theStore);
+					
+					//access StoreController and call the method.
+					StoreController controller = loader.getController();
+					controller.intiateData(loginUser);
+					
+					//this line gets the stage information.
+					Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+					
+					window.setScene(storeScene);
+					window.setTitle("BookStore");
+					window.show();
+					window.setResizable(false);
+					
+				} catch (IOException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
 			}
 		}
 	}
@@ -115,7 +145,29 @@ public class LoginController implements Initializable {
 						signUpLabel.setText("This user already exists.");
 					} else {
 						//open store.
-						signUpLabel.setText("success.");
+						try {
+							FXMLLoader loader = new FXMLLoader();
+							loader.setLocation(getClass().getResource("/fxml/Store.fxml"));
+							Parent theStore = loader.load();
+							
+							Scene storeScene = new Scene(theStore);
+							
+							//access StoreController and call the method.
+							StoreController controller = loader.getController();
+							controller.intiateData(signupUser);
+							
+							//this line gets the stage information.
+							Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+							
+							window.setScene(storeScene);
+							window.setTitle("BookStore");
+							window.show();
+							window.setResizable(false);
+							
+						} catch (IOException e) {
+							// TODO Auto-generated catch block
+							e.printStackTrace();
+						}
 					}
 				} catch (Exception e) {
 					signUpLabel.setText(e.getMessage());
