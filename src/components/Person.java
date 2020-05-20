@@ -1,9 +1,17 @@
 package components;
 
+import java.util.HashMap;
+
 import components.IPerson;
 
 public abstract class Person implements IPerson {
 
+	
+	public Person(String name, String address, String phone) {
+		this.setName(name);
+		this.setAddress(address);
+		this.setPhone(phone);
+	}
 	public String getName() {
 		return name;
 	}
@@ -27,6 +35,8 @@ public abstract class Person implements IPerson {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
+	
+	public abstract HashMap<String, String>getAttributes();
 
 	private String name;
 	

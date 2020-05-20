@@ -46,13 +46,11 @@ shipAddress Varchar(100) Not Null,
 type ENUM ('user', 'manager'));
 
 Create Table cart (
+cartid int AUTO_INCREMENT PRIMARY KEY,
 username Varchar (10) Not Null,
 ISBN Varchar (10) Not Null ,
 NoOfBooks INT,
-date Date Not Null,
-constraint pk2 primary key (username, ISBN),
-constraint fk4 foreign key (ISBN) references book (ISBN) on delete cascade on update cascade,
-constraint fk5 foreign key (username) references customers (username) on delete cascade on update cascade);
+date Date Not Null);
 
 Create Table promote (
 username Varchar (10) Primary Key Not Null,

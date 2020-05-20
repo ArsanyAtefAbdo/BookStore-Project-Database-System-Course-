@@ -6,7 +6,10 @@ public class Cart {
 
 	private ArrayList<IBook> books;
 	
-
+	public Cart() {
+		// TODO Auto-generated constructor stub
+		this.books = new ArrayList<>();
+	}
 	/**
 	 * @param book to be added
 	 */
@@ -30,10 +33,24 @@ public class Cart {
 	 */
 	public int get_total_price() {
 		int total = 0;
+		
 		for(IBook book: this.books) {
 			total += book.getPrice();
 		}
 		return total;
+	}
+	
+	/**
+	 * @param index of item to be removed.
+	 * @return true if the item is removed successfully.
+	 */
+	public boolean remove_item(IBook book) {
+		
+		if(this.books.isEmpty()) {
+			return false;
+		}
+		this.books.remove(book);
+		return true;
 	}
 	
 	/**
@@ -62,5 +79,13 @@ public class Cart {
 	 */
 	public void setBooks(ArrayList<IBook> books) {
 		this.books = books;
+	}
+	
+	/**
+	 * clear the cart from books
+	 */
+	public void clear() {
+		
+		this.books.clear();
 	}
 }

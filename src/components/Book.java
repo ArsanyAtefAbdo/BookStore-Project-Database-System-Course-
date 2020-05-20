@@ -5,6 +5,10 @@ import java.util.ArrayList;
 import components.IBook;
 
 public class Book implements IBook {
+	
+	public Book() {
+		this.authors = new ArrayList<>();
+	}
 
 	public ArrayList<String> getAuthors() {
 		return authors;
@@ -84,5 +88,46 @@ public class Book implements IBook {
 	
 	private int No_Of_Books;
 	
+	private int request_amount;
+	
+	/**
+	 * @return the request_amount
+	 */
+	public int getRequest_amount() {
+		return request_amount;
+	}
+
+	/**
+	 * @param request_amount the request_amount to set
+	 */
+	public void setRequest_amount(int request_amount) {
+		this.request_amount = request_amount;
+	}
+
 	private ArrayList<String> authors;
+
+	@Override
+	public void addAuthor(String author) {
+		// TODO Auto-generated method stub
+		this.authors.add(author);
+	}
+	
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		StringBuffer sb = new StringBuffer();
+		sb.append("ISBN : " + this.ISBN);
+		sb.append(" title : " + this.title);
+		sb.append(" publisher_name : " + this.publisher_name);
+		sb.append(" publication_year : " + this.publication_year);
+		sb.append(" price : " + this.price);
+		sb.append(" No_Of_Books : " + this.No_Of_Books);
+		sb.append(" category : " + this.category);
+		sb.append(" authors : { ");
+		for(String s : authors) {
+			sb.append(s + ", ");
+		}
+		sb.replace(sb.length() - 2, sb.length() - 1, "}");
+		return sb.toString();
+	}
 }

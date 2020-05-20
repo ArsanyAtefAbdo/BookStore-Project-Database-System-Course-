@@ -7,19 +7,18 @@ import java.util.HashMap;
 
 import com.mysql.cj.xdevapi.Result;
 
+import components.IBook;
+import components.IUser;
+import components.User;
 import javafx.util.Pair;
 
 public class Testing {
 
+	private static Object object;
+
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		try {
-			Class.forName("com.mysql.jdbc.Driver");
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		IMySqlConnection mysql = MySqlConnection.getInstance();
+//		IMySqlConnection mysql = MySqlConnection.getInstance();
 		 
 //		//insert into customers
 //		HashMap<String, String> attributes = new HashMap<>();
@@ -67,21 +66,47 @@ public class Testing {
 		
 
 		//select book
-		ArrayList<String> attributes = new ArrayList<>();
-		HashMap<String, Pair<String, String>> conditions = new HashMap<>();
-		conditions.put("ISBN", new Pair<String, String>("<", "20"));
-		ResultSet rs = mysql.search_item("book", null, conditions);
-		try {
-			while (rs.next()) {
-				for (int i = 1; i < 9; i++) {
-					System.out.print(rs.getString(i) + " ");
-				}
-				System.out.println();
-			}
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+//		ArrayList<String> attributes = new ArrayList<>();
+//		HashMap<String, Pair<String, String>> conditions = new HashMap<>();
+//		conditions.put("ISBN", new Pair<String, String>("<", "20"));
+//		conditions.put("author", new Pair<String, String>("=", "michael said"));
+//		ResultSet rs = mysql.search_item("book", null, conditions);
+//		try {
+//			while (rs.next()) {
+//				for (int i = 1; i < 9; i++) {
+//					System.out.print(rs.getString(i) + " ");
+//				}
+//				System.out.println();
+//			}
+//		} catch (SQLException e) {
+//			// TODO Auto-generated catch block
+//			e.printStackTrace();
+//		}
+		
+		IUser user = new User("micosaid", "alex", "01280233126");
+		user.setPassword("lolo+lyly");
+		user.setFirst_name("michael");
+		user.setLast_name("said");
+		user.setEmail("mico@gmail.com");
+		IBookStore bookStore = new BookStore();
+		
+		System.out.println(bookStore.logIn("micosaid", "lolo+lyly"));
+		
+//		System.out.println(bookStore.updateSettings(user));
+		
+//		bookStore.demandUser();
+		HashMap<String, Pair<String, String>>filters = new HashMap<String, Pair<String,String>>();
+		filters.put("ISBN", new Pair<String, String>(" = ", "10"));
+		ArrayList<IBook> books  = bookStore.search(filters);
+		
+		for(IBook book : books) {
+			System.out.println(book.toString());
+			book.setRequest_amount(20);
+			bookStore.addBookToCart(book);
 		}
+		System.out.println(bookStore.chechOut("4545", "2021-05-30"));
+		
+		
 		
 	}
 

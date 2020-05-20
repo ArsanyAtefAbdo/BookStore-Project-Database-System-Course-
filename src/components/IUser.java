@@ -1,6 +1,6 @@
 package components;
 
-public interface IUser {
+public interface IUser extends IPerson {
 
 	public String getPassword();
 
@@ -17,6 +17,10 @@ public interface IUser {
 	public String getEmail();
 
 	public void setEmail(String email);
+	
+	public boolean getIsManager();
+	
+	public void setIsManager(boolean isManager);
 	
 	/**
 	 * @return the cart

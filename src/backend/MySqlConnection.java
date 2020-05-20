@@ -64,14 +64,14 @@ public class MySqlConnection implements IMySqlConnection {
 			sqlBuilder.append(" natural join authors ");
 		}
 		if (!conditions.isEmpty()) {
-			sqlBuilder.append("where ");
+			sqlBuilder.append(" where ");
 			for (Entry<String, Pair<String, String>> e:conditions.entrySet()) {
 				sqlBuilder.append(e.getKey());
 				sqlBuilder.append(e.getValue().getKey());
 				sqlBuilder.append("\'");
 				sqlBuilder.append(e.getValue().getValue());
 				sqlBuilder.append("\'");
-				sqlBuilder.append(" AND");
+				sqlBuilder.append(" AND ");
 			}
 			sqlBuilder.delete(sqlBuilder.length() - 4, sqlBuilder.length());
 		}
@@ -159,19 +159,19 @@ public class MySqlConnection implements IMySqlConnection {
 				sqlBuilder.append(" natural join authors ");
 			}
 			
-			sqlBuilder.append("set ");
+			sqlBuilder.append(" set ");
 			for (Entry<String, String> a:attributes.entrySet()) {
 				sqlBuilder.append(a.getKey() + "=\'" + a.getValue() + "\', ");
 			}
 			sqlBuilder.delete(sqlBuilder.length() - 2, sqlBuilder.length() - 1);
-			sqlBuilder.append("where ");
+			sqlBuilder.append(" where ");
 			for (Entry<String, Pair<String, String>> e:conditions.entrySet()) {
 				sqlBuilder.append(e.getKey());
 				sqlBuilder.append(e.getValue().getKey());
 				sqlBuilder.append("\'");
 				sqlBuilder.append(e.getValue().getValue());
 				sqlBuilder.append("\'");
-				sqlBuilder.append(" AND");
+				sqlBuilder.append(" AND ");
 			}
 			sqlBuilder.delete(sqlBuilder.length() - 4, sqlBuilder.length());
 			try {
@@ -196,7 +196,7 @@ public class MySqlConnection implements IMySqlConnection {
 		if ("book".equals(table)) {
 			sqlBuilder.append("book, authors from (book natural join authors) ");
 		} else {
-			sqlBuilder.append("from ");
+			sqlBuilder.append(" from ");
 			sqlBuilder.append(table);
 		}
 		
@@ -208,7 +208,7 @@ public class MySqlConnection implements IMySqlConnection {
 				sqlBuilder.append("\'");
 				sqlBuilder.append(e.getValue().getValue());
 				sqlBuilder.append("\'");
-				sqlBuilder.append(" AND");
+				sqlBuilder.append(" AND ");
 			}
 			sqlBuilder.delete(sqlBuilder.length() - 4, sqlBuilder.length());
 			try {

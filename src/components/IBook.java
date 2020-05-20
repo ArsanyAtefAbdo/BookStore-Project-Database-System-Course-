@@ -37,4 +37,16 @@ public interface IBook {
 	public ArrayList<String> getAuthors();
 
 	public void setAuthors(ArrayList<String> authors);
+	
+	public void addAuthor(String author);
+	
+	/**
+	 * @return the request_amount
+	 */
+	public int getRequest_amount();
+
+	/**
+	 * @param request_amount the request_amount to set
+	 */
+	public void setRequest_amount(int request_amount);
 }
