@@ -20,12 +20,12 @@
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #2d3447;">
                <children>
                   <JFXListView fx:id="cartList" layoutX="22.0" layoutY="44.0" prefHeight="370.0" prefWidth="714.0" />
-                  <JFXButton fx:id="checkOutCartBtn" layoutX="646.0" layoutY="422.0" prefWidth="90.0" style="-fx-background-color: #1fd81f; -fx-background-radius: 10;" text="Check Out">
+                  <JFXButton fx:id="checkOutCartBtn" layoutX="646.0" layoutY="422.0" onAction="#checkOutBtnAct" prefWidth="90.0" style="-fx-background-color: #1fd81f; -fx-background-radius: 10;" text="Check Out">
                      <font>
                         <Font size="14.0" />
                      </font>
                   </JFXButton>
-                  <JFXButton fx:id="cancelCartBtn" layoutX="548.0" layoutY="422.0" prefWidth="90.0" style="-fx-background-color: #ffc210; -fx-background-radius: 10;" text="Cancel">
+                  <JFXButton fx:id="cancelCartBtn" layoutX="548.0" layoutY="422.0" onAction="#cancelCartAct" prefWidth="90.0" style="-fx-background-color: #ffc210; -fx-background-radius: 10;" text="Cancel">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -129,7 +129,7 @@
                      </font>
                   </Label>
                   <JFXTextField fx:id="settingsconfirm" layoutX="384.0" layoutY="376.0" prefHeight="30.0" prefWidth="330.0" promptText="Confirm Passwor" style="-fx-background-color: #ffffff;" />
-                  <JFXButton fx:id="settingsSaveBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="609.0" layoutY="419.0" onAction="#saveSettingsChanges" style="-fx-background-color: #1fd81f; -fx-background-radius: 10;" text="Save Changes">
+                  <JFXButton fx:id="settingsSaveBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="609.0" layoutY="419.0" onAction="#saveSettingsChangesAct" style="-fx-background-color: #1fd81f; -fx-background-radius: 10;" text="Save Changes">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -139,7 +139,7 @@
                         <Font size="13.0" />
                      </font>
                   </Label>
-                  <JFXButton fx:id="settingsDemandBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="408.0" layoutY="419.0" onAction="#demandManagerPrivilages" style="-fx-background-color: #c9daf8; -fx-background-radius: 10;" text="Demand Manager Privilages">
+                  <JFXButton fx:id="settingsDemandBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="408.0" layoutY="419.0" onAction="#demandManagerPrivilagesAct" style="-fx-background-color: #c9daf8; -fx-background-radius: 10;" text="Demand Manager Privilages">
                      <font>
                         <Font size="14.0" />
                      </font>
@@ -161,7 +161,7 @@
                   <JFXTextField fx:id="manageAddYear" layoutX="224.0" layoutY="45.0" prefHeight="30.0" prefWidth="200.0" promptText="Year Of Publication" style="-fx-background-color: #ffffff;" />
                   <JFXTextField fx:id="manageAddPrice" layoutX="224.0" layoutY="98.0" prefHeight="30.0" prefWidth="200.0" promptText="Price" style="-fx-background-color: #ffffff;" />
                   <JFXTextField fx:id="manageAddCategory" layoutX="433.0" layoutY="46.0" prefHeight="30.0" prefWidth="200.0" promptText="Category" style="-fx-background-color: #ffffff;" />
-                  <JFXButton fx:id="manageAddBtn" layoutX="641.0" layoutY="99.0" prefHeight="29.0" prefWidth="96.0" style="-fx-background-color: #1fd81f;" text="Add">
+                  <JFXButton fx:id="manageAddBtn" layoutX="641.0" layoutY="99.0" onAction="#addBookAct" prefHeight="29.0" prefWidth="96.0" style="-fx-background-color: #1fd81f;" text="Add">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -175,7 +175,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <JFXButton fx:id="mangeDemandConfirmBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="391.0" style="-fx-background-color: #1fd81f; -fx-background-radius: 10;" text=" ">
+                  <JFXButton fx:id="mangeDemandConfirmBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="55.0" layoutY="391.0" onAction="#demandConfirmBtnAct" style="-fx-background-color: #1fd81f; -fx-background-radius: 10;" text=" ">
                      <graphic>
                         <ImageView fitHeight="37.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -184,7 +184,7 @@
                         </ImageView>
                      </graphic>
                   </JFXButton>
-                  <JFXButton fx:id="mangeDemandRejectBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="118.0" layoutY="393.0" style="-fx-background-color: #ff0000; -fx-background-radius: 10;" text=" ">
+                  <JFXButton fx:id="mangeDemandRejectBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="118.0" layoutY="393.0" onAction="#demandRejectBtnAct" style="-fx-background-color: #ff0000; -fx-background-radius: 10;" text=" ">
                      <graphic>
                         <ImageView fitHeight="37.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
                            <image>
@@ -200,7 +200,7 @@
                      </font>
                   </Label>
                   <JFXListView fx:id="mangeOrdersList" layoutX="226.0" layoutY="259.0" prefHeight="125.0" prefWidth="184.0" />
-                  <JFXButton fx:id="mangeOrderConfirmBtn" layoutX="282.0" layoutY="393.0" prefHeight="29.0" prefWidth="73.0" style="-fx-background-color: #1fd81f;" text="Confirm">
+                  <JFXButton fx:id="mangeOrderConfirmBtn" layoutX="282.0" layoutY="393.0" onAction="#confirmBookAct" prefHeight="29.0" prefWidth="73.0" style="-fx-background-color: #1fd81f;" text="Confirm">
                      <font>
                         <Font size="13.0" />
                      </font>
@@ -212,13 +212,13 @@
                      </font>
                   </Label>
                   <JFXTextField fx:id="mangeNewOrderISBN" layoutX="442.0" layoutY="259.0" prefHeight="30.0" prefWidth="132.0" promptText="Enter Book ISBN" style="-fx-background-color: #ffffff;" />
-                  <JFXButton fx:id="mangeNewOrderBtn" layoutX="589.0" layoutY="281.0" prefHeight="32.0" prefWidth="93.0" style="-fx-background-color: #1fd81f;" text="Order">
+                  <JFXButton fx:id="mangeNewOrderBtn" layoutX="589.0" layoutY="281.0" onAction="#newOrderAct" prefHeight="32.0" prefWidth="93.0" style="-fx-background-color: #1fd81f;" text="Order">
                      <font>
                         <Font size="13.0" />
                      </font>
                   </JFXButton>
                   <Line endX="176.0" layoutX="525.0" layoutY="356.0" startX="-100.0" />
-                  <JFXButton fx:id="showReportsBtn" layoutX="439.0" layoutY="376.0" prefHeight="40.0" prefWidth="137.0" style="-fx-background-color: #c9daf8;" text="Show Reports">
+                  <JFXButton fx:id="showReportsBtn" layoutX="439.0" layoutY="376.0" onAction="#showReportsAct" prefHeight="40.0" prefWidth="137.0" style="-fx-background-color: #c9daf8;" text="Show Reports">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -226,7 +226,7 @@
                   <JFXTextField fx:id="mangeNewOrderNum" layoutX="442.0" layoutY="307.0" prefHeight="30.0" prefWidth="132.0" promptText="Enter Number Of Books" style="-fx-background-color: #ffffff;" />
                   <JFXTextField fx:id="manageAddAmount" layoutX="433.0" layoutY="98.0" prefHeight="30.0" prefWidth="200.0" promptText="Amount" style="-fx-background-color: #ffffff;" />
                   <JFXTextField fx:id="manageAddAuthor" layoutX="14.0" layoutY="99.0" prefHeight="30.0" prefWidth="200.0" promptText="Author" style="-fx-background-color: #ffffff;" />
-                  <JFXButton fx:id="editBookBtn" layoutX="589.0" layoutY="376.0" prefHeight="40.0" prefWidth="137.0" style="-fx-background-color: #c9daf8;" text="Edit a Book">
+                  <JFXButton fx:id="editBookBtn" layoutX="589.0" layoutY="376.0" onAction="#editBookAct" prefHeight="40.0" prefWidth="137.0" style="-fx-background-color: #c9daf8;" text="Edit a Book">
                      <font>
                         <Font size="18.0" />
                      </font>

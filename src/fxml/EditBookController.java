@@ -1,6 +1,5 @@
 package fxml;
 
-import java.awt.print.Book;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -9,12 +8,15 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 
-import components.IBook;
+import backend.BookStore;
+import backend.IBookStore;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 
 public class EditBookController implements Initializable{
+	
+	private IBookStore myStore = BookStore.getInstance();
 	
 	@FXML
     private JFXListView<String> booksList;
@@ -75,13 +77,20 @@ public class EditBookController implements Initializable{
 
     @FXML
     private JFXTextField newPubPhone;
+    
+    @FXML
+    private JFXButton cancelBtn;
 
     @FXML
     void searchAct(ActionEvent event) {
 
     }
 	
-	
+    @FXML
+    void cancelBtnAct(ActionEvent event) {
+
+    }
+    
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub

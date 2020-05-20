@@ -48,7 +48,7 @@
       <JFXTextField fx:id="newYearTxt" layoutX="234.0" layoutY="334.0" prefHeight="30.0" prefWidth="200.0" promptText="Year Of Publication" style="-fx-background-color: #ffffff;" />
       <JFXTextField fx:id="newPriceTxt" layoutX="343.0" layoutY="388.0" prefHeight="30.0" prefWidth="300.0" promptText="Price" style="-fx-background-color: #ffffff;" />
       <JFXTextField fx:id="newCategoryTxt" layoutX="443.0" layoutY="335.0" prefHeight="30.0" prefWidth="200.0" promptText="Category" style="-fx-background-color: #ffffff;" />
-      <JFXButton fx:id="saveBtn" layoutX="651.0" layoutY="388.0" prefHeight="29.0" prefWidth="96.0" style="-fx-background-color: #1fd81f;" text="Save">
+      <JFXButton fx:id="saveBtn" layoutX="651.0" layoutY="362.0" prefHeight="29.0" prefWidth="96.0" style="-fx-background-color: #1fd81f; -fx-background-radius: 10;" text="Save">
          <font>
             <Font size="13.0" />
          </font>
@@ -58,5 +58,10 @@
       <JFXTextField fx:id="newPubPhone" layoutX="443.0" layoutY="435.0" prefHeight="30.0" prefWidth="200.0" promptText="Publisher Phone Number" style="-fx-background-color: #ffffff;" />
       <Label layoutX="35.0" layoutY="471.0" prefHeight="17.0" prefWidth="458.0" text="All fields should not be plank" textFill="WHITE" />
       <Label layoutX="26.0" layoutY="471.0" prefHeight="17.0" prefWidth="16.0" text="*" textFill="WHITE" />
+      <JFXButton fx:id="cancelBtn" layoutX="651.0" layoutY="421.0" onAction="#cancelBtnAct" prefHeight="29.0" prefWidth="96.0" style="-fx-background-color: #ffc210; -fx-background-radius: 10;" text="Cancel">
+         <font>
+            <Font size="13.0" />
+         </font>
+      </JFXButton>
    </children>
 </AnchorPane>

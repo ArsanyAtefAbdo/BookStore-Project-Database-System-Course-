@@ -8,11 +8,16 @@ import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXTextField;
 
+import backend.BookStore;
+import backend.IBookStore;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 
 public class CheckOutController implements Initializable{
+	
+	private IBookStore myStore = BookStore.getInstance();
 
 	@FXML
     private JFXTextField creditCardTxt;
@@ -25,6 +30,9 @@ public class CheckOutController implements Initializable{
 
     @FXML
     private JFXButton checkBtn;
+
+    @FXML
+    private Label checkLabel;
 
     @FXML
     void cancelAct(ActionEvent event) {
@@ -40,7 +48,6 @@ public class CheckOutController implements Initializable{
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		
 	}
 
 }

@@ -24,7 +24,7 @@ import javafx.fxml.Initializable;
 
 public class LoginController implements Initializable {
 
-	private IBookStore myStore = new BookStore();
+	private IBookStore myStore = BookStore.getInstance();
 
 	@FXML
 	private JFXTextField logInUserName;

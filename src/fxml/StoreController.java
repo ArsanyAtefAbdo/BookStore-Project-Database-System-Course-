@@ -1,5 +1,6 @@
 package fxml;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -8,11 +9,21 @@ import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 
+import backend.BookStore;
+import backend.IBookStore;
 import components.IUser;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 
 public class StoreController implements Initializable{
+	
+	private IBookStore myStore = BookStore.getInstance();
 	
 	private IUser theUser;
 	
@@ -157,6 +168,98 @@ public class StoreController implements Initializable{
 	public void intiateData(IUser user) {
 		theUser = user;
 	}
+	
+	
+	@FXML
+    void addBookAct(ActionEvent event) {
+
+    }
+
+    @FXML
+    void cancelCartAct(ActionEvent event) {
+
+    }
+
+    @FXML
+    void checkOutBtnAct(ActionEvent event) {
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("/fxml/CheckOut.fxml"));
+			Parent checkParent = loader.load();
+			
+			Scene checkScene = new Scene(checkParent);
+			
+			Stage window = new Stage();
+			window.setScene(checkScene);
+			window.setTitle("Check Out");
+			window.show();
+			window.setResizable(false);
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+
+    @FXML
+    void confirmBookAct(ActionEvent event) {
+
+    }
+
+    @FXML
+    void demandConfirmBtnAct(ActionEvent event) {
+
+    }
+
+    @FXML
+    void demandManagerPrivilagesAct(ActionEvent event) {
+
+    }
+
+    @FXML
+    void demandRejectBtnAct(ActionEvent event) {
+
+    }
+
+    @FXML
+    void editBookAct(ActionEvent event) {
+    	try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("/fxml/EditBook.fxml"));
+			Parent theStore = loader.load();
+			
+			Scene storeScene = new Scene(theStore);
+			
+			
+			//this line gets the stage information.
+			Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+			
+			window.setScene(storeScene);
+			window.setTitle("BookStore");
+			window.show();
+			window.setResizable(false);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
+
+    @FXML
+    void newOrderAct(ActionEvent event) {
+
+    }
+
+    @FXML
+    void saveSettingsChangesAct(ActionEvent event) {
+
+    }
+
+    @FXML
+    void showReportsAct(ActionEvent event) {
+
+    }
+	
+	
 	
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
