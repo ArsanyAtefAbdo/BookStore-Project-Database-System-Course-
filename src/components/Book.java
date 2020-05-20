@@ -1,6 +1,7 @@
 package components;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import components.IBook;
 
@@ -129,5 +130,24 @@ public class Book implements IBook {
 		}
 		sb.replace(sb.length() - 2, sb.length() - 1, "}");
 		return sb.toString();
+	}
+
+	@Override
+	public HashMap<String, String> getAttributes() {
+		// TODO Auto-generated method stub
+		HashMap<String, String>attributes = new HashMap<String, String>();
+		attributes.put("ISBN", ISBN);
+		attributes.put("title",title);
+		attributes.put("publisher_name", publisher_name);
+		attributes.put("publication_year", publication_year);
+		attributes.put("price", ""+price);
+		attributes.put("No_Of_Books", ""+No_Of_Books);
+		attributes.put("category", ""+category);
+		String au = "";
+		for(String s : authors) {
+			au += s + ",";
+		}
+		attributes.put("authors",au.substring(0, au.length()-1));
+		return attributes;
 	}
 }

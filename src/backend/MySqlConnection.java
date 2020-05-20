@@ -63,7 +63,7 @@ public class MySqlConnection implements IMySqlConnection {
 		if ("book".equals(table)) {
 			sqlBuilder.append(" natural join authors ");
 		}
-		if (!conditions.isEmpty()) {
+		if (conditions != null && !conditions.isEmpty()) {
 			sqlBuilder.append(" where ");
 			for (Entry<String, Pair<String, String>> e:conditions.entrySet()) {
 				sqlBuilder.append(e.getKey());

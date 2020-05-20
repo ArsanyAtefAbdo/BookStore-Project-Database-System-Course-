@@ -13,22 +13,29 @@ public interface IBookStore {
 	public IUser logIn(String username, String password);
 	public boolean signUp(IUser user);
 	public boolean updateSettings(IUser user);
-	
-	public void demandUser();
-	
 	public void logOut();
 	
+	public ArrayList<String>getdemandUsers();
+	public boolean acceptUser(ArrayList<String> usernames);
+	public void demandUser();
+	
 	public ArrayList<IBook> search(HashMap<String, Pair<String, String>> filters);
-	
 	public Cart addBookToCart(IBook newBook);
-	
 	public Cart removeBookFromCart(IBook newBook);
-	
 	public Cart removeBookFromCart(int index);
-	
 	public void clearCart();
-	
 	public boolean chechOut(String card, String date);
+	
+	
+	
+	public boolean addNewBook(IBook book);
+	public boolean addNewBook(HashMap<String, String>attributes);
+	public boolean updateBook(String ISBN, IBook book);
+	
+	
+	public boolean placeOrder(String ISBN, int amount);
+	public HashMap<String, String> getOrders();
+	public boolean confirmOrders(ArrayList<String>ISBNs);
 	
 	
 	

@@ -1,6 +1,7 @@
 package components;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public interface IBook {
 	
@@ -49,4 +50,6 @@ public interface IBook {
 	 * @param request_amount the request_amount to set
 	 */
 	public void setRequest_amount(int request_amount);
+	
+	public HashMap<String, String>getAttributes();
 }

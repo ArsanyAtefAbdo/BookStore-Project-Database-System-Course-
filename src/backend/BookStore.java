@@ -17,7 +17,7 @@ import javafx.util.Pair;
 
 /**
  * 
- * @author Arsany
+ * @author Michael Said
  * the main class which uses the other classes 
  */
 
@@ -91,9 +91,8 @@ public class BookStore implements IBookStore {
 		// TODO Auto-generated method stub
 		HashMap<String, Pair<String, String>> conditions = new HashMap<>();
 		conditions.put("username", new Pair<String, String>("=", this.user.getName()));
-		HashMap<String, String> attributes = user.getAttributes();
 		//---------------------------
-		if(mySqlConnection.update_item(USERS_TABLE, attributes, conditions)) {
+		if(mySqlConnection.update_item(USERS_TABLE, user.getAttributes(), conditions)) {
 			this.user = user;
 			return true;
 		}
@@ -226,6 +225,93 @@ public class BookStore implements IBookStore {
 		}
 		
 		this.clearCart();
+		return true;
+	}
+
+	@Override
+	public boolean addNewBook(IBook book) {
+		// TODO Auto-generated method stub
+		return mySqlConnection.insert_item(BOOKS_TABLE, book.getAttributes());
+	}
+
+	@Override
+	public boolean addNewBook(HashMap<String, String> attributes) {
+		// TODO Auto-generated method stub
+		return mySqlConnection.insert_item(BOOKS_TABLE, attributes);
+	}
+
+	@Override
+	public boolean updateBook(String ISBN, IBook book) {
+		// TODO Auto-generated method stub
+		HashMap<String, Pair<String, String>> conditions = new HashMap<>();
+		conditions.put("ISBN", new Pair<String, String>("=", ISBN));
+		return mySqlConnection.update_item(BOOKS_TABLE, book.getAttributes(), conditions);
+	}
+
+	@Override
+	public boolean placeOrder(String ISBN, int amount) {
+		// TODO Auto-generated method stub
+		HashMap<String, String> attributes = new HashMap<>();
+		attributes.put("ISBN", ISBN);
+		attributes.put("NoOfBooks", ""+amount);
+		return mySqlConnection.insert_item(ORDERS_TABLE, attributes);
+	}
+
+	@Override
+	public HashMap<String, String> getOrders() {
+		// TODO Auto-generated method stub
+		ResultSet result = this.mySqlConnection.search_item(ORDERS_TABLE, null, null);
+		HashMap<String, String> orders = new HashMap<>();
+		
+		try {
+			while(result.next()) {
+				orders.put(result.getString("ISBN"), result.getString("NoOfBooks"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+//			e.printStackTrace();
+			System.out.println(e);
+		}
+		return orders;
+	}
+
+	@Override
+	public boolean confirmOrders(ArrayList<String> ISBNs) {
+		// TODO Auto-generated method stub
+		HashMap<String, Pair<String, String>> conditions = new HashMap<>();
+		
+		for(String ISBN : ISBNs) {
+			conditions.put("ISBN", new Pair<String, String>("=", ISBN));
+			mySqlConnection.delete_item(ORDERS_TABLE, conditions);
+		}
+		return true;
+	}
+
+	@Override
+	public ArrayList<String> getdemandUsers() {
+		// TODO Auto-generated method stub
+		ResultSet result = this.mySqlConnection.search_item(PROMOTE_TABLE, null, null);
+		ArrayList<String> users = new ArrayList<String>();
+		try {
+			while(result.next()) {
+				users.add(result.getString("username"));
+			}
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+//			e.printStackTrace();
+			System.out.println(e);
+		}
+		return users;
+	}
+
+	@Override
+	public boolean acceptUser(ArrayList<String> usernames) {
+		// TODO Auto-generated method stub
+		HashMap<String, Pair<String, String>> conditions = new HashMap<>();
+		for(String username : usernames) {
+			conditions.put("username", new Pair<String, String>("=", username));
+			mySqlConnection.delete_item(PROMOTE_TABLE, conditions);
+		}
 		return true;
 	}
 }
