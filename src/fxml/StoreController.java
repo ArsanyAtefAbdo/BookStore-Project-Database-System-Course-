@@ -276,7 +276,18 @@ public class StoreController implements Initializable {
 		} catch (Exception e) {
 			// Nothing happens.
 		}
-		
+		try {
+			Map<String, String> ordersHashMap = myStore.getOrders();
+			ArrayList<String> ordersList = new ArrayList<String>();
+			for (Map.Entry<String, String> entry : ordersHashMap.entrySet()) {
+				String temp = entry.getKey() + " " + entry.getValue();
+				ordersList.add(temp);
+			}
+			ObservableList<String> ordersObservList = FXCollections.observableArrayList(ordersList);
+			manageOrdersList.setItems(ordersObservList);
+		} catch (Exception e) {
+			// TODO: handle exception
+		}
 	}
 
 	@FXML
@@ -360,7 +371,7 @@ public class StoreController implements Initializable {
 	
 	@FXML
 	void newOrderAct(ActionEvent event) {
-
+		
 	}
 
 	@FXML
