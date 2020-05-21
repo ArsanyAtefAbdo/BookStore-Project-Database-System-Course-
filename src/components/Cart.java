@@ -19,7 +19,9 @@ public class Cart {
 		
 		if(book.getRequest_amount() == 1) {
 			this.books.add(book);
+
 		}
+		
 	}
 	/**
 	 * @param index of item.

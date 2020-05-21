@@ -150,4 +150,10 @@ public class Book implements IBook {
 		attributes.put("authors",au.substring(0, au.length()-1));
 		return attributes;
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return ((IBook)obj).getISBN() == this.ISBN;
+	}
 }

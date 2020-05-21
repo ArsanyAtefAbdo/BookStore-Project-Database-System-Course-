@@ -443,11 +443,20 @@ public class StoreController implements Initializable {
 	@FXML
     void searchAddBtnAct(ActionEvent event) {
 		
+		findBookErrorLabel.setText("");
     	int index = searchList.getSelectionModel().getSelectedIndex();
     	if(index < 0 || reusltBooks.isEmpty()) {
     		return;
     	}
     	IBook selectedBook = reusltBooks.get(index);
+    	int indexCart = myStore.getCurrentUser().getCart().getBooks().indexOf(selectedBook);
+    	if(indexCart > -1) {
+    		selectedBook = myStore.getCurrentUser().getCart().getBooks().get(indexCart);
+    	}
+    	if(selectedBook.getRequest_amount() == selectedBook.getNo_Of_Books()) {
+    		findBookErrorLabel.setText("**There are not enough copies now !!");
+    		return;
+    	}
     	Cart cart = myStore.addBookToCart(selectedBook);
     	cartList.getItems().clear();
     	cartList.getItems().addAll(cart.getReport());
@@ -457,6 +466,7 @@ public class StoreController implements Initializable {
 
     @FXML
     void searchBtnAct(ActionEvent event) {
+    	findBookErrorLabel.setText("");
     	filters.clear();
     	
     	if(!findBookNameTxt.getText().trim().isEmpty()) {
