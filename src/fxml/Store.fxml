@@ -2,6 +2,7 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import com.jfoenix.controls.JFXComboBox?>
+<?import com.jfoenix.controls.JFXDatePicker?>
 <?import com.jfoenix.controls.JFXListView?>
 <?import com.jfoenix.controls.JFXPasswordField?>
 <?import com.jfoenix.controls.JFXTabPane?>
@@ -82,13 +83,13 @@
                      </font>
                   </Label>
                   <JFXTextField fx:id="findPublisherTxt" layoutX="140.0" layoutY="31.0" prefHeight="30.0" prefWidth="120.0" promptText="Publisher" style="-fx-background-color: #ffffff;" />
-                  <JFXTextField fx:id="findYearTxt" layoutX="16.0" layoutY="70.0" prefHeight="30.0" prefWidth="210.0" promptText="Year Of Publication" style="-fx-background-color: #ffffff;" />
                   <JFXTextField fx:id="findPriceTxt" layoutX="341.0" layoutY="70.0" prefHeight="30.0" prefWidth="210.0" promptText="Price" style="-fx-background-color: #ffffff;" />
                   <JFXTextField fx:id="findCategoryTxt" layoutX="390.0" layoutY="31.0" prefHeight="30.0" prefWidth="120.0" promptText="Category" style="-fx-background-color: #ffffff;" />
                   <JFXComboBox fx:id="findYearBox" layoutX="235.0" layoutY="73.0" prefHeight="25.0" prefWidth="94.0" />
                   <JFXComboBox fx:id="findPriceBox" layoutX="563.0" layoutY="72.0" prefHeight="25.0" prefWidth="99.0" />
                   <JFXTextField fx:id="findISBNTxt" layoutX="516.0" layoutY="31.0" prefHeight="30.0" prefWidth="120.0" promptText="ISBN" style="-fx-background-color: #ffffff;" />
                   <JFXTextField fx:id="findAuthorTxt" layoutX="264.0" layoutY="31.0" prefHeight="30.0" prefWidth="120.0" promptText="Author" style="-fx-background-color: #ffffff;" />
+                  <JFXDatePicker fx:id="findYearTxt" layoutX="14.0" layoutY="71.0" prefHeight="30.0" prefWidth="210.0" promptText="Date of publication" style="-fx-background-color: #ffffff;" />
                </children></AnchorPane>
         </content>
       </Tab>

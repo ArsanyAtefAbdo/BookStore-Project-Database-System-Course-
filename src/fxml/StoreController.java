@@ -9,6 +9,7 @@ import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXPasswordField;
 import com.jfoenix.controls.JFXTextField;
@@ -79,7 +80,7 @@ public class StoreController implements Initializable {
 	private JFXTextField findPublisherTxt;
 
 	@FXML
-	private JFXTextField findYearTxt;
+    private JFXDatePicker findYearTxt;
 
 	@FXML
 	private JFXTextField findPriceTxt;

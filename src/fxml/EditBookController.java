@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXComboBox;
+import com.jfoenix.controls.JFXDatePicker;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
 
@@ -39,7 +40,7 @@ public class EditBookController implements Initializable{
     private JFXTextField oldPubTxt;
 
     @FXML
-    private JFXTextField oldYearTxt;
+    private JFXDatePicker oldYearTxt;
 
     @FXML
     private JFXTextField oldPriceTxt;
@@ -66,7 +67,7 @@ public class EditBookController implements Initializable{
     private JFXTextField newPubTxt;
 
     @FXML
-    private JFXTextField newYearTxt;
+    private JFXDatePicker newYearTxt;
 
     @FXML
     private JFXTextField newPriceTxt;
