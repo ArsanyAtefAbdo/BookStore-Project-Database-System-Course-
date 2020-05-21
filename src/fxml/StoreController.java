@@ -372,7 +372,7 @@ public class StoreController implements Initializable {
 			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
 			window.setScene(storeScene);
-			window.setTitle("BookStore");
+			window.setTitle("BookStore:Edit Book");
 			window.show();
 			window.setResizable(false);
 
@@ -389,6 +389,18 @@ public class StoreController implements Initializable {
 			//Do Nothing.
 		} else {
 			myStore.placeOrder(manageNewOrderISBN.getText(), Integer.parseInt(manageNewOrderNum.getText()));
+			try {
+				Map<String, String> ordersHashMap = myStore.getOrders();
+				ArrayList<String> ordersList = new ArrayList<String>();
+				for (Map.Entry<String, String> entry : ordersHashMap.entrySet()) {
+					String temp = "ISBN: " + entry.getKey() + " Amount: " + entry.getValue();
+					ordersList.add(temp);
+				}
+				ObservableList<String> ordersObservList = FXCollections.observableArrayList(ordersList);
+				manageOrdersList.setItems(ordersObservList);
+			} catch (Exception e) {
+				// TODO: handle exception
+			}
 		}
 	}
 
@@ -529,7 +541,7 @@ public class StoreController implements Initializable {
 			Map<String, String> ordersHashMap = myStore.getOrders();
 			ArrayList<String> ordersList = new ArrayList<String>();
 			for (Map.Entry<String, String> entry : ordersHashMap.entrySet()) {
-				String temp = entry.getKey() + " " + entry.getValue();
+				String temp = "ISBN: " + entry.getKey() + " Amount: " + entry.getValue();
 				ordersList.add(temp);
 			}
 			ObservableList<String> ordersObservList = FXCollections.observableArrayList(ordersList);
