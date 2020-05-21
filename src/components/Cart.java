@@ -106,9 +106,9 @@ public class Cart {
 	public ArrayList<String> getReport(){
 		ArrayList<String> report = new ArrayList<>();
 		for(IBook book : this.books) {
-			String s = "book title : " + book.getTitle() + " / ";
-			s = s + " book amount : " + book.getRequest_amount() + " / ";
-			s = s + " book price : " +book.getPrice() + " / ";
+			String s = "book title : " + book.getTitle() + "   ";
+			s = s + " book amount : " + book.getRequest_amount() + "   ";
+			s = s + " book price : " +book.getPrice() + "   ";
 			s = s + " total price : " + book.getPrice() * book.getRequest_amount();
 			report.add(s);
 		}
