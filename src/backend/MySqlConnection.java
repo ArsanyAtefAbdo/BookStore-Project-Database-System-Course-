@@ -115,7 +115,12 @@ public class MySqlConnection implements IMySqlConnection {
 			try {
 				System.out.println(sqlBuilder.toString());
 				
-				stmt.executeUpdate(sqlBuilder.toString());
+				if("book".equals(table)) {
+					stmt.executeUpdate(sqlBuilder.toString(), Statement.RETURN_GENERATED_KEYS);
+				}else {
+					stmt.executeUpdate(sqlBuilder.toString());
+				}
+				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
 				printSQLException(e);
@@ -123,11 +128,23 @@ public class MySqlConnection implements IMySqlConnection {
 			}
 			
 			if (!temp.isEmpty()) {
+//				"select last_insert_id() as last_id;"
+				int ISBN = 0;
+				try {
+					ResultSet rs = stmt.getGeneratedKeys();
+					if(rs.next()) {
+						ISBN = rs.getInt(1);
+					}
+				} catch (SQLException e1) {
+					// TODO Auto-generated catch block
+					printSQLException(e1);
+					return false;
+				}
 				String [] authors = temp.split(",");
 				for (int i = 0; i < authors.length; i++) {
 					sqlBuilder = new StringBuilder();
 					sqlBuilder.append("insert into authors values (\'");
-					sqlBuilder.append(attributes.get("ISBN") + "\', \'");
+					sqlBuilder.append(ISBN + "\', \'");
 					sqlBuilder.append(authors[i] + "\')");
 					try {
 						
