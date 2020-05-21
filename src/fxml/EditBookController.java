@@ -2,6 +2,8 @@ package fxml;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
@@ -25,6 +27,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import javafx.util.Pair;
+import javafx.util.StringConverter;
 
 public class EditBookController implements Initializable{
 	
@@ -85,25 +88,25 @@ public class EditBookController implements Initializable{
     void searchAct(ActionEvent event) {
     	
     	filters.clear();
-    	if(!oldBookTxt.getText().isEmpty()) {
+    	if(!oldBookTxt.getText().trim().isEmpty()) {
     		filters.put("title", new Pair<String, String>("=", oldBookTxt.getText()));
     	}
-    	if(!oldIsbnTxt.getText().isEmpty()) {
+    	if(!oldIsbnTxt.getText().trim().isEmpty()) {
     		filters.put("ISBN", new Pair<String, String>("=", oldIsbnTxt.getText()));
     	}
-    	if(!oldPubTxt.getText().isEmpty()) {
+    	if(!oldPubTxt.getText().trim().isEmpty()) {
     		filters.put("publisher_name", new Pair<String, String>("=", oldPubTxt.getText()));
     	}
-    	if(!oldAuthorTxt.getText().isEmpty()) {
+    	if(!oldAuthorTxt.getText().trim().isEmpty()) {
     		filters.put("author", new Pair<String, String>("=", oldAuthorTxt.getText()));
     	}
-    	if(!oldCategoryTxt.getText().isEmpty()) {
+    	if(!oldCategoryTxt.getText().trim().isEmpty()) {
     		filters.put("category", new Pair<String, String>("=", oldCategoryTxt.getText()));
     	}
-    	if(!oldPubTxt.getText().isEmpty()) {
+    	if(!oldPubTxt.getText().trim().isEmpty()) {
     		filters.put("publication_year", new Pair<String, String>(yearBox.getValue(), oldPubTxt.getText()));
     	}
-    	if(!oldPriceTxt.getText().isEmpty()) {
+    	if(!oldPriceTxt.getText().trim().isEmpty()) {
     		filters.put("price", new Pair<String, String>(priceBox.getValue(), oldPriceTxt.getText()));
     	}
     	
@@ -129,22 +132,22 @@ public class EditBookController implements Initializable{
     	int oldISBN = selectedBooks.get(index).getISBN();
     	
     	
-    	if(!newNameTxt.getText().isEmpty()) {
+    	if(!newNameTxt.getText().trim().isEmpty()) {
     		attributes.put("title", newNameTxt.getText());
     	}
-    	if(!newCategoryTxt.getText().isEmpty()) {
+    	if(!newCategoryTxt.getText().trim().isEmpty()) {
     		attributes.put("category", newCategoryTxt.getText());
     	}
-    	if(!newYearTxt.getText().isEmpty()) {
-    		attributes.put("publication_year", newYearTxt.getText());
+    	if(!newYearTxt.getEditor().getText().trim().isEmpty()) {
+    		attributes.put("publication_year", newYearTxt.getEditor().getText());
     	}
-    	if(!NewAuthorTxt.getText().isEmpty()) {
+    	if(!NewAuthorTxt.getText().trim().isEmpty()) {
     		attributes.put("authors", NewAuthorTxt.getText());
     	}
-    	if(!newPriceTxt.getText().isEmpty()) {
+    	if(!newPriceTxt.getText().trim().isEmpty()) {
     		attributes.put("price", newPriceTxt.getText());
     	}
-    	if(!newPubTxt.getText().isEmpty()) {
+    	if(!newPubTxt.getText().trim().isEmpty()) {
     		attributes.put("publisher_name", newPubTxt.getText());
     	}
     	
@@ -190,6 +193,30 @@ public class EditBookController implements Initializable{
 		yearBox.setValue("=");
 		filters = new HashMap<>();
 		selectedBooks = new ArrayList<>();
+		StringConverter<LocalDate> sc = new StringConverter<LocalDate>()
+		{
+		    private DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+		    @Override
+		    public String toString(LocalDate localDate)
+		    {
+		        if(localDate==null)
+		            return "";
+		        return dateTimeFormatter.format(localDate);
+		    }
+
+		    @Override
+		    public LocalDate fromString(String dateString)
+		    {
+		        if(dateString==null || dateString.trim().isEmpty())
+		        {
+		            return null;
+		        }
+		        return LocalDate.parse(dateString,dateTimeFormatter);
+		    }
+		};
+		newYearTxt.setConverter(sc);
+		oldYearTxt.setConverter(sc);
 	}
 
 }

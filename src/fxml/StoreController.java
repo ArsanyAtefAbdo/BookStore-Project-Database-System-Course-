@@ -2,6 +2,8 @@ package fxml;
 
 import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -16,6 +18,7 @@ import com.jfoenix.controls.JFXTextField;
 
 import backend.BookStore;
 import backend.IBookStore;
+import components.Cart;
 import components.IBook;
 import components.IPerson;
 import components.IUser;
@@ -35,6 +38,7 @@ import javafx.scene.control.SelectionMode;
 import javafx.scene.control.Tab;
 import javafx.stage.Stage;
 import javafx.util.Pair;
+import javafx.util.StringConverter;
 
 public class StoreController implements Initializable {
 
@@ -205,6 +209,9 @@ public class StoreController implements Initializable {
 	@FXML
     private Label addNewBookFeedBackLabel;
 	
+    @FXML
+    private Label totalPriceLabel;
+	
 	//Methods.
 	@FXML
 	void manageAddBookAct(ActionEvent event) {
@@ -249,6 +256,7 @@ public class StoreController implements Initializable {
 	void cancelCartAct(ActionEvent event) {
 		myStore.clearCart();
 		cartList.getItems().clear();
+		totalPriceLabel.setText("total price :  0");
 	}
 	
 	@FXML
@@ -423,8 +431,10 @@ public class StoreController implements Initializable {
     		return;
     	}
     	IBook selectedBook = reusltBooks.get(index);
-    	myStore.addBookToCart(selectedBook);
-    	cartList.getItems().add(selectedBook.toString());
+    	Cart cart = myStore.addBookToCart(selectedBook);
+    	cartList.getItems().clear();
+    	cartList.getItems().addAll(cart.getReport());
+		totalPriceLabel.setText("total price :  " + cart.get_total_price());
 		
     }
 
@@ -447,8 +457,8 @@ public class StoreController implements Initializable {
     	if(!findCategoryTxt.getText().trim().isEmpty()) {
     		filters.put("category", new Pair<String, String>("=", findCategoryTxt.getText()));
     	}
-    	if(!findYearTxt.getText().trim().isEmpty()) {
-    		filters.put("publication_year", new Pair<String, String>(findYearBox.getValue(), findYearTxt.getText()));
+    	if(!findYearTxt.getEditor().getText().trim().isEmpty()) {
+    		filters.put("publication_year", new Pair<String, String>(findYearBox.getValue(), findYearTxt.getEditor().getText().replaceAll("/", "-")));
     	}
     	if(!findPriceTxt.getText().trim().isEmpty()) {
     		filters.put("price", new Pair<String, String>(findPriceBox.getValue(), findPriceTxt.getText()));
@@ -470,8 +480,11 @@ public class StoreController implements Initializable {
     	if(index < 0) {
     		return;
     	}
-    	myStore.removeBookFromCart(index);
+    	Cart cart = myStore.removeBookFromCart(index);
     	cartList.getItems().remove(index);
+    	cartList.getItems().clear();
+    	cartList.getItems().addAll(cart.getReport());
+		totalPriceLabel.setText("total price :  " + cart.get_total_price());
     }
 
 	@FXML
@@ -544,6 +557,33 @@ public class StoreController implements Initializable {
 		if(!myStore.getCurrentUser().getIsManager()) {
 			managingTab.setDisable(true);
 		}
+		
+		StringConverter<LocalDate> sc = new StringConverter<LocalDate>()
+		{
+		    private DateTimeFormatter dateTimeFormatter=DateTimeFormatter.ofPattern("yyyy-MM-dd");
+
+		    @Override
+		    public String toString(LocalDate localDate)
+		    {
+		        if(localDate==null)
+		            return "";
+		        return dateTimeFormatter.format(localDate);
+		    }
+
+		    @Override
+		    public LocalDate fromString(String dateString)
+		    {
+		        if(dateString==null || dateString.trim().isEmpty())
+		        {
+		            return null;
+		        }
+		        return LocalDate.parse(dateString,dateTimeFormatter);
+		    }
+		};
+		
+		findYearTxt.setConverter(sc);
+		
+		
 	}
 
 }

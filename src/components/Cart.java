@@ -14,7 +14,12 @@ public class Cart {
 	 * @param book to be added
 	 */
 	public void add_items(IBook book) {
-		this.books.add(book);
+		
+		book.setRequest_amount(book.getRequest_amount() + 1);
+		
+		if(book.getRequest_amount() == 1) {
+			this.books.add(book);
+		}
 	}
 	/**
 	 * @param index of item.
@@ -35,7 +40,7 @@ public class Cart {
 		int total = 0;
 		
 		for(IBook book: this.books) {
-			total += book.getPrice();
+			total += book.getPrice() * book.getRequest_amount();
 		}
 		return total;
 	}
@@ -49,7 +54,11 @@ public class Cart {
 		if(this.books.isEmpty()) {
 			return false;
 		}
-		this.books.remove(book);
+		book.setRequest_amount(book.getRequest_amount() - 1);
+		
+		if(book.getRequest_amount() == 0) {
+			this.books.remove(book);
+		}
 		return true;
 	}
 	
@@ -62,8 +71,13 @@ public class Cart {
 		if(index < 0 || this.books.isEmpty()) {
 			return false;
 		}
+		IBook book = this.books.get(index);
 		
-		this.books.remove(index);
+		if(book.getRequest_amount() == 1) {
+			this.books.remove(index);
+		}else {
+			book.setRequest_amount(book.getRequest_amount() - 1);
+		}
 		return true;
 	}
 	
@@ -87,5 +101,18 @@ public class Cart {
 	public void clear() {
 		
 		this.books.clear();
+	}
+	
+	public ArrayList<String> getReport(){
+		ArrayList<String> report = new ArrayList<>();
+		for(IBook book : this.books) {
+			String s = "book title : " + book.getTitle() + " / ";
+			s = s + " book amount : " + book.getRequest_amount() + " / ";
+			s = s + " book price : " +book.getPrice() + " / ";
+			s = s + " total price : " + book.getPrice() * book.getRequest_amount();
+			report.add(s);
+		}
+		return report;
+		
 	}
 }
