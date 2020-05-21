@@ -19,11 +19,11 @@ public class Book implements IBook {
 		this.authors = authors;
 	}
 
-	public String getISBN() {
+	public int getISBN() {
 		return ISBN;
 	}
 	
-	public void setISBN(String iSBN) {
+	public void setISBN(int iSBN) {
 		ISBN = iSBN;
 	}
 	
@@ -77,7 +77,7 @@ public class Book implements IBook {
 	
 	private cat category;
 	
-	private String ISBN;
+	private int ISBN;
 	
 	private String title;
 	
@@ -136,7 +136,7 @@ public class Book implements IBook {
 	public HashMap<String, String> getAttributes() {
 		// TODO Auto-generated method stub
 		HashMap<String, String>attributes = new HashMap<String, String>();
-		attributes.put("ISBN", ISBN);
+		attributes.put("ISBN", ""+ISBN);
 		attributes.put("title",title);
 		attributes.put("publisher_name", publisher_name);
 		attributes.put("publication_year", publication_year);

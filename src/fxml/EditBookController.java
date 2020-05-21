@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.ResourceBundle;
 
-import com.jfoenix.controls.JFXButton;
 import com.jfoenix.controls.JFXComboBox;
 import com.jfoenix.controls.JFXListView;
 import com.jfoenix.controls.JFXTextField;
@@ -120,7 +119,7 @@ public class EditBookController implements Initializable{
     	}
     	
     	HashMap<String, String> attributes = new HashMap<>();
-    	String oldISBN = selectedBooks.get(index).getISBN();
+    	int oldISBN = selectedBooks.get(index).getISBN();
     	
     	
     	if(!newNameTxt.getText().isEmpty()) {
@@ -142,7 +141,7 @@ public class EditBookController implements Initializable{
     		attributes.put("publisher_name", newPubTxt.getText());
     	}
     	
-    	myStore.updateBook(oldISBN, attributes);
+    	myStore.updateBook(""+oldISBN, attributes);
     	booksList.getItems().remove(index);
     }
 	

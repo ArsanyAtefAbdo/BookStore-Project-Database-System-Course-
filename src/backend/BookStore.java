@@ -182,8 +182,8 @@ public class BookStore implements IBookStore {
 		
 		try {
 			while(result.next()) {
-				String ISBN = result.getString("ISBN");
-				if(!map.containsKey(ISBN)) {
+				int ISBN = result.getInt("ISBN");
+				if(!map.containsKey(""+ISBN)) {
 					IBook book = new Book();
 					book.setISBN(ISBN);
 					book.setTitle(result.getString("title"));
@@ -193,10 +193,10 @@ public class BookStore implements IBookStore {
 					book.setNo_Of_Books(result.getInt("NoOfBooks"));
 					book.setCategory(cat.valueOf(result.getString("category")));
 					book.addAuthor(result.getString("author"));
-					map.put(ISBN, book);
+					map.put(ISBN+"", book);
 					books.add(book);
 				}else {
-					map.get(ISBN).addAuthor(result.getString("author"));
+					map.get(Integer.toString(ISBN)).addAuthor(result.getString("author"));
 				}
 			}
 		} catch (SQLException e) {
@@ -218,12 +218,12 @@ public class BookStore implements IBookStore {
 			
 			conditions.clear();
 			attributes.clear();
-			conditions.put("ISBN", new Pair<String, String>(" = ", book.getISBN()));
+			conditions.put("ISBN", new Pair<String, String>(" = ", ""+book.getISBN()));
 			attributes.put("NoOfBooks", ""+(book.getNo_Of_Books()-book.getRequest_amount()));
 			
 			if(mySqlConnection.update_item(BOOKS_TABLE, attributes, conditions)) {
 				attributes.clear();
-				attributes.put("ISBN", book.getISBN());
+				attributes.put("ISBN", ""+book.getISBN());
 				attributes.put("username", user.getName());
 				attributes.put("date", ft.format(new Date()));
 				attributes.put("NoOfBooks", ""+book.getRequest_amount());

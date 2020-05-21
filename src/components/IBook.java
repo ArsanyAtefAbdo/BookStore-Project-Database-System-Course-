@@ -7,9 +7,9 @@ public interface IBook {
 	
 	public enum cat {Science, Art, Religion, History, Geography}
 
-	public String getISBN();
+	public int getISBN();
 	
-	public void setISBN(String iSBN);
+	public void setISBN(int iSBN);
 	
 	public String getTitle();
 	
