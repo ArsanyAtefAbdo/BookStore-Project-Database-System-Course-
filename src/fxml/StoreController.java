@@ -49,6 +49,9 @@ public class StoreController implements Initializable {
     private HashMap<String, Pair<String, String>>filters;
     
     private ArrayList<IBook> reusltBooks;
+    
+    @FXML
+    private Label findBookErrorLabel;
 
     @FXML
     private Tab managingTab;
@@ -284,7 +287,9 @@ public class StoreController implements Initializable {
 		ObservableList<String> selectedItems = manageOrdersList.getSelectionModel().getSelectedItems();
 		ArrayList<String> selectedItemsArrayList = new ArrayList<String>();
 		for (String i :selectedItems) {
-			selectedItemsArrayList.add(i);
+			String[] splited = i.split("\\s+");
+			String toAdd = splited[1];
+			selectedItemsArrayList.add(toAdd);
 		}
 		try {
 			myStore.confirmOrders(selectedItemsArrayList);
@@ -295,7 +300,7 @@ public class StoreController implements Initializable {
 			Map<String, String> ordersHashMap = myStore.getOrders();
 			ArrayList<String> ordersList = new ArrayList<String>();
 			for (Map.Entry<String, String> entry : ordersHashMap.entrySet()) {
-				String temp = entry.getKey() + " " + entry.getValue();
+				String temp = "ISBN: " + entry.getKey() + " Amount: " + entry.getValue();
 				ordersList.add(temp);
 			}
 			ObservableList<String> ordersObservList = FXCollections.observableArrayList(ordersList);

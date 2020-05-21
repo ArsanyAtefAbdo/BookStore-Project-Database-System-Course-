@@ -62,7 +62,7 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #2d3447;">
                <children>
-                  <JFXListView fx:id="searchList" layoutX="14.0" layoutY="124.0" prefHeight="314.0" prefWidth="665.0" />
+                  <JFXListView fx:id="searchList" layoutX="14.0" layoutY="124.0" prefHeight="305.0" prefWidth="665.0" />
                   <JFXButton fx:id="addBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="690.0" layoutY="397.0" onAction="#searchAddBtnAct" prefHeight="24.0" prefWidth="32.0" style="-fx-background-color: #0ebf0e; -fx-background-radius: 10;" text=" ">
                      <graphic>
                         <ImageView fitHeight="26.0" fitWidth="26.0" pickOnBounds="true" preserveRatio="true">
@@ -95,6 +95,11 @@
                   <JFXTextField fx:id="findISBNTxt" layoutX="516.0" layoutY="31.0" prefHeight="30.0" prefWidth="120.0" promptText="ISBN" style="-fx-background-color: #ffffff;" />
                   <JFXTextField fx:id="findAuthorTxt" layoutX="264.0" layoutY="31.0" prefHeight="30.0" prefWidth="120.0" promptText="Author" style="-fx-background-color: #ffffff;" />
                   <JFXDatePicker fx:id="findYearTxt" layoutX="14.0" layoutY="71.0" prefHeight="30.0" prefWidth="210.0" promptText="Date of publication" style="-fx-background-color: #ffffff;" />
+                  <Label fx:id="findBookErrorLabel" layoutX="15.0" layoutY="431.0" prefHeight="17.0" prefWidth="390.0" textFill="WHITE">
+                     <font>
+                        <Font size="15.0" />
+                     </font>
+                  </Label>
                </children></AnchorPane>
         </content>
       </Tab>
