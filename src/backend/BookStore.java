@@ -11,6 +11,7 @@ import components.Book;
 import components.Cart;
 import components.IBook;
 import components.IBook.cat;
+import components.IPerson;
 import components.IUser;
 import components.User;
 import javafx.util.Pair;
@@ -252,11 +253,11 @@ public class BookStore implements IBookStore {
 	}
 
 	@Override
-	public boolean updateBook(String ISBN, IBook book) {
+	public boolean updateBook(String ISBN, HashMap<String, String> attributes) {
 		// TODO Auto-generated method stub
 		HashMap<String, Pair<String, String>> conditions = new HashMap<>();
 		conditions.put("ISBN", new Pair<String, String>("=", ISBN));
-		return mySqlConnection.update_item(BOOKS_TABLE, book.getAttributes(), conditions);
+		return mySqlConnection.update_item(BOOKS_TABLE, attributes, conditions);
 	}
 
 	@Override
@@ -330,5 +331,12 @@ public class BookStore implements IBookStore {
 	public IUser getCurrentUser() {
 		// TODO Auto-generated method stub
 		return this.user;
+	}
+
+	@Override
+	public boolean addNewPublisher(IPerson newPublisher) {
+		// TODO Auto-generated method stub
+		
+	 return mySqlConnection.insert_item(PUBLISHERS_TABLE, newPublisher.getAttributes());
 	}
 }

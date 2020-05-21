@@ -1,6 +1,8 @@
 package fxml;
 
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.ResourceBundle;
 
 import com.jfoenix.controls.JFXButton;
@@ -10,9 +12,13 @@ import com.jfoenix.controls.JFXTextField;
 
 import backend.BookStore;
 import backend.IBookStore;
+import components.IBook;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.util.Pair;
 
 public class EditBookController implements Initializable{
 	
@@ -20,9 +26,6 @@ public class EditBookController implements Initializable{
 	
 	@FXML
     private JFXListView<String> booksList;
-
-    @FXML
-    private JFXButton searchBtn;
 
     @FXML
     private JFXTextField oldBookTxt;
@@ -67,34 +70,97 @@ public class EditBookController implements Initializable{
     private JFXTextField newCategoryTxt;
 
     @FXML
-    private JFXButton saveBtn;
-
-    @FXML
     private JFXTextField NewAuthorTxt;
-
-    @FXML
-    private JFXTextField newPubAddress;
-
-    @FXML
-    private JFXTextField newPubPhone;
     
-    @FXML
-    private JFXButton cancelBtn;
+    HashMap<String, Pair<String, String>>filters;
+    ArrayList<IBook> selectedBooks;
 
     @FXML
     void searchAct(ActionEvent event) {
-
+    	
+    	filters.clear();
+    	if(!oldBookTxt.getText().isEmpty()) {
+    		filters.put("title", new Pair<String, String>("=", oldBookTxt.getText()));
+    	}
+    	if(!oldIsbnTxt.getText().isEmpty()) {
+    		filters.put("ISBN", new Pair<String, String>("=", oldIsbnTxt.getText()));
+    	}
+    	if(!oldPubTxt.getText().isEmpty()) {
+    		filters.put("publisher_name", new Pair<String, String>("=", oldPubTxt.getText()));
+    	}
+    	if(!oldAuthorTxt.getText().isEmpty()) {
+    		filters.put("author", new Pair<String, String>("=", oldAuthorTxt.getText()));
+    	}
+    	if(!oldCategoryTxt.getText().isEmpty()) {
+    		filters.put("category", new Pair<String, String>("=", oldCategoryTxt.getText()));
+    	}
+    	if(!oldPubTxt.getText().isEmpty()) {
+    		filters.put("publication_year", new Pair<String, String>(yearBox.getValue(), oldPubTxt.getText()));
+    	}
+    	if(!oldPriceTxt.getText().isEmpty()) {
+    		filters.put("price", new Pair<String, String>(priceBox.getValue(), oldPriceTxt.getText()));
+    	}
+    	
+    	selectedBooks = myStore.search(filters);
+    	
+    	booksList.getItems().clear();
+    	for(IBook book : selectedBooks) {
+    		System.out.println(book);
+    		booksList.getItems().add(book.toString());
+    	}
+    	
+    }
+    
+    @FXML
+    void saveBtnAct(ActionEvent event) {
+    	
+    	int index = booksList.getSelectionModel().getSelectedIndex();
+    	if(index < 0 || selectedBooks.isEmpty()) {
+    		return;
+    	}
+    	
+    	HashMap<String, String> attributes = new HashMap<>();
+    	String oldISBN = selectedBooks.get(index).getISBN();
+    	
+    	
+    	if(!newNameTxt.getText().isEmpty()) {
+    		attributes.put("title", newNameTxt.getText());
+    	}
+    	if(!newCategoryTxt.getText().isEmpty()) {
+    		attributes.put("category", newCategoryTxt.getText());
+    	}
+    	if(!newYearTxt.getText().isEmpty()) {
+    		attributes.put("publication_year", newYearTxt.getText());
+    	}
+    	if(!NewAuthorTxt.getText().isEmpty()) {
+    		attributes.put("authors", NewAuthorTxt.getText());
+    	}
+    	if(!newPriceTxt.getText().isEmpty()) {
+    		attributes.put("price", newPriceTxt.getText());
+    	}
+    	if(!newPubTxt.getText().isEmpty()) {
+    		attributes.put("publisher_name", newPubTxt.getText());
+    	}
+    	
+    	myStore.updateBook(oldISBN, attributes);
+    	booksList.getItems().remove(index);
     }
 	
     @FXML
     void cancelBtnAct(ActionEvent event) {
-
+    	
     }
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		
+		ObservableList<String> operations = FXCollections.observableArrayList("=", ">", "<");
+		priceBox.setItems(FXCollections.observableArrayList(operations));
+		yearBox.setItems(FXCollections.observableArrayList(operations));
+		priceBox.setValue("=");
+		yearBox.setValue("=");
+		filters = new HashMap<>();
+		selectedBooks = new ArrayList<>();
 	}
 
 }

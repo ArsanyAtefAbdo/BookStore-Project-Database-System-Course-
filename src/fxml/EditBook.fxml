@@ -11,7 +11,7 @@
 <?import javafx.scene.shape.Line?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: #2d3447;" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.EditBookController">
+<AnchorPane prefHeight="500.0" prefWidth="750.0" style="-fx-background-color: #2d3447;" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.EditBookController">
    <children>
       <JFXListView fx:id="booksList" layoutX="24.0" layoutY="134.0" prefHeight="140.0" prefWidth="665.0" />
       <JFXButton fx:id="searchBtn" alignment="CENTER" contentDisplay="CENTER" layoutX="703.0" layoutY="57.0" onAction="#searchAct" style="-fx-background-color: #7bc9ff; -fx-background-radius: 10;" text=" ">
@@ -44,18 +44,16 @@
          </font>
       </Label>
       <JFXTextField fx:id="newNameTxt" layoutX="24.0" layoutY="334.0" prefHeight="30.0" prefWidth="200.0" promptText="Book Title" style="-fx-background-color: #ffffff;" />
-      <JFXTextField fx:id="newPubTxt" layoutX="24.0" layoutY="435.0" prefHeight="30.0" prefWidth="200.0" promptText="Publisher" style="-fx-background-color: #ffffff;" />
+      <JFXTextField fx:id="newPubTxt" layoutX="251.0" layoutY="435.0" prefHeight="30.0" prefWidth="200.0" promptText="Publisher" style="-fx-background-color: #ffffff;" />
       <JFXTextField fx:id="newYearTxt" layoutX="234.0" layoutY="334.0" prefHeight="30.0" prefWidth="200.0" promptText="Year Of Publication" style="-fx-background-color: #ffffff;" />
       <JFXTextField fx:id="newPriceTxt" layoutX="343.0" layoutY="388.0" prefHeight="30.0" prefWidth="300.0" promptText="Price" style="-fx-background-color: #ffffff;" />
       <JFXTextField fx:id="newCategoryTxt" layoutX="443.0" layoutY="335.0" prefHeight="30.0" prefWidth="200.0" promptText="Category" style="-fx-background-color: #ffffff;" />
-      <JFXButton fx:id="saveBtn" layoutX="651.0" layoutY="362.0" prefHeight="29.0" prefWidth="96.0" style="-fx-background-color: #1fd81f; -fx-background-radius: 10;" text="Save">
+      <JFXButton fx:id="saveBtn" layoutX="651.0" layoutY="362.0" onAction="#saveBtnAct" prefHeight="29.0" prefWidth="96.0" style="-fx-background-color: #1fd81f; -fx-background-radius: 10;" text="Save">
          <font>
             <Font size="13.0" />
          </font>
       </JFXButton>
       <JFXTextField fx:id="NewAuthorTxt" layoutX="24.0" layoutY="388.0" prefHeight="30.0" prefWidth="300.0" promptText="Author" style="-fx-background-color: #ffffff;" />
-      <JFXTextField fx:id="newPubAddress" layoutX="234.0" layoutY="435.0" prefHeight="30.0" prefWidth="200.0" promptText="Publisher Address" style="-fx-background-color: #ffffff;" />
-      <JFXTextField fx:id="newPubPhone" layoutX="443.0" layoutY="435.0" prefHeight="30.0" prefWidth="200.0" promptText="Publisher Phone Number" style="-fx-background-color: #ffffff;" />
       <Label layoutX="35.0" layoutY="471.0" prefHeight="17.0" prefWidth="458.0" text="All fields should not be plank" textFill="WHITE" />
       <Label layoutX="26.0" layoutY="471.0" prefHeight="17.0" prefWidth="16.0" text="*" textFill="WHITE" />
       <JFXButton fx:id="cancelBtn" layoutX="651.0" layoutY="421.0" onAction="#cancelBtnAct" prefHeight="29.0" prefWidth="96.0" style="-fx-background-color: #ffc210; -fx-background-radius: 10;" text="Cancel">

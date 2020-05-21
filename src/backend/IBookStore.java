@@ -5,6 +5,7 @@ import java.util.HashMap;
 
 import components.Cart;
 import components.IBook;
+import components.IPerson;
 import components.IUser;
 import javafx.util.Pair;
 
@@ -30,7 +31,7 @@ public interface IBookStore {
 	
 	public boolean addNewBook(IBook book);
 	public boolean addNewBook(HashMap<String, String>attributes);
-	public boolean updateBook(String ISBN, IBook book);
+	public boolean updateBook(String ISBN, HashMap<String, String> attributes);
 	
 	
 	public boolean placeOrder(String ISBN, int amount);
@@ -38,6 +39,8 @@ public interface IBookStore {
 	public boolean confirmOrders(ArrayList<String>ISBNs);
 	
 	IUser getCurrentUser();
+	
+	public boolean addNewPublisher(IPerson newPublisher);
 	
 	
 	
