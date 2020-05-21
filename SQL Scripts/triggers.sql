@@ -32,9 +32,11 @@ BEGIN
 END //
 DELIMITER ;
 
-DELIMITER //
-CREATE TRIGGER promote_users before delete ON promote FOR EACH ROW
-BEGIN
-		update customers set type = 'manager' where username = old.username;
-END //
-DELIMITER ;
+#DELIMITER //
+#CREATE TRIGGER promote_users before delete ON promote FOR EACH ROW
+#BEGIN
+#		update customers set type = 'manager' where username = old.username;
+#END //
+#DELIMITER ;
+
+# drop trigger promote_users;

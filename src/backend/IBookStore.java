@@ -18,6 +18,7 @@ public interface IBookStore {
 	
 	public ArrayList<String>getdemandUsers();
 	public boolean acceptUser(ArrayList<String> usernames);
+	public boolean rejectUser(ArrayList<String> usernames);
 	public void demandUser();
 	
 	public ArrayList<IBook> search(HashMap<String, Pair<String, String>> filters);

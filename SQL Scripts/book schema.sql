@@ -12,7 +12,7 @@ phone Varchar(100));
 #----  may be change ISBN to INT -------
 
 Create Table book (
-ISBN Varchar (10) Primary Key Not Null,
+ISBN int AUTO_INCREMENT Primary Key Not Null,
 title Varchar(100) Not Null,
 publisher_name Varchar (100) Not Null,
 publication_year Date,
@@ -22,13 +22,13 @@ NoOfBooks INT default 20 Not Null,
 constraint fk1 foreign key (publisher_name) references publishers (publisher_name) on delete cascade on update cascade);
 
 Create Table authors (
-ISBN Varchar (10) Not Null,
+ISBN int Not Null,
 author Varchar(100) Not Null,
 constraint pk1 primary key (ISBN, author),
 constraint fk2 foreign key (ISBN) references book (ISBN) on delete cascade on update cascade);
 
 Create Table orders (
-ISBN Varchar (10) Primary Key Not Null,
+ISBN int Primary Key Not Null,
 NoOfBooks INT default 20,
 constraint fk3 foreign key (ISBN) references book (ISBN) on delete cascade on update cascade);
 
@@ -48,7 +48,7 @@ type ENUM ('user', 'manager'));
 Create Table cart (
 cartid int AUTO_INCREMENT PRIMARY KEY,
 username Varchar (10) Not Null,
-ISBN Varchar (10) Not Null ,
+ISBN int Not Null ,
 NoOfBooks INT,
 date Date Not Null);
 

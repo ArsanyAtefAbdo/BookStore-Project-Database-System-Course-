@@ -320,9 +320,12 @@ public class BookStore implements IBookStore {
 	public boolean acceptUser(ArrayList<String> usernames) {
 		// TODO Auto-generated method stub
 		HashMap<String, Pair<String, String>> conditions = new HashMap<>();
+		HashMap<String, String> attributes = new HashMap<>();
+		attributes.put("type", "manager");
 		for(String username : usernames) {
 			conditions.put("username", new Pair<String, String>("=", username));
 			mySqlConnection.delete_item(PROMOTE_TABLE, conditions);
+			mySqlConnection.update_item(USERS_TABLE, attributes, conditions);
 		}
 		return true;
 	}
@@ -338,5 +341,16 @@ public class BookStore implements IBookStore {
 		// TODO Auto-generated method stub
 		
 	 return mySqlConnection.insert_item(PUBLISHERS_TABLE, newPublisher.getAttributes());
+	}
+
+	@Override
+	public boolean rejectUser(ArrayList<String> usernames) {
+		// TODO Auto-generated method stub
+		HashMap<String, Pair<String, String>> conditions = new HashMap<>();
+		for(String username : usernames) {
+			conditions.put("username", new Pair<String, String>("=", username));
+			mySqlConnection.delete_item(PROMOTE_TABLE, conditions);
+		}
+		return true;
 	}
 }
