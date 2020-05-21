@@ -157,7 +157,7 @@
                </children></AnchorPane>
         </content>
       </Tab>
-      <Tab text="          Managing          ">
+      <Tab fx:id="managingTab" text="          Managing          ">
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #2d3447;">
                <children>
@@ -227,15 +227,10 @@
                      </font>
                   </JFXButton>
                   <Line endX="176.0" layoutX="525.0" layoutY="383.0" startX="-100.0" />
-                  <JFXButton fx:id="showReportsBtn" layoutX="439.0" layoutY="403.0" onAction="#showReportsAct" prefHeight="40.0" prefWidth="137.0" style="-fx-background-color: #c9daf8;" text="Show Reports">
-                     <font>
-                        <Font size="18.0" />
-                     </font>
-                  </JFXButton>
                   <JFXTextField fx:id="manageNewOrderNum" layoutX="442.0" layoutY="334.0" prefHeight="30.0" prefWidth="132.0" promptText="Enter Number Of Books" style="-fx-background-color: #ffffff;" />
                   <JFXTextField fx:id="manageAddAmount" layoutX="433.0" layoutY="77.0" prefHeight="30.0" prefWidth="200.0" promptText="Amount" style="-fx-background-color: #ffffff;" />
                   <JFXTextField fx:id="manageAddAuthor" layoutX="14.0" layoutY="78.0" prefHeight="30.0" prefWidth="200.0" promptText="Authors" style="-fx-background-color: #ffffff;" />
-                  <JFXButton fx:id="editBookBtn" layoutX="589.0" layoutY="403.0" onAction="#editBookAct" prefHeight="40.0" prefWidth="137.0" style="-fx-background-color: #c9daf8;" text="Edit a Book">
+                  <JFXButton fx:id="editBookBtn" layoutX="463.0" layoutY="395.0" onAction="#editBookAct" prefHeight="48.0" prefWidth="211.0" style="-fx-background-color: #c9daf8;" text="Edit a Book">
                      <font>
                         <Font size="18.0" />
                      </font>

@@ -31,6 +31,7 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
+import javafx.scene.control.Tab;
 import javafx.stage.Stage;
 import javafx.util.Pair;
 
@@ -40,9 +41,12 @@ public class StoreController implements Initializable {
 
 	private IUser theUser;
 	
-    HashMap<String, Pair<String, String>>filters;
-    ArrayList<IBook> reusltBooks;
+    private HashMap<String, Pair<String, String>>filters;
+    
+    private ArrayList<IBook> reusltBooks;
 
+    @FXML
+    private Tab managingTab;
 
 	@FXML
 	private JFXListView<String> cartList;
@@ -166,9 +170,6 @@ public class StoreController implements Initializable {
 
 	@FXML
 	private JFXButton manageNewOrderBtn;
-
-	@FXML
-	private JFXButton showReportsBtn;
 
 	@FXML
 	private JFXTextField manageNewOrderNum;
@@ -416,12 +417,6 @@ public class StoreController implements Initializable {
 		}
 
 	}
-
-
-	@FXML
-	void showReportsAct(ActionEvent event) {
-
-	}
 	
 	@FXML
     void searchAddBtnAct(ActionEvent event) {
@@ -538,6 +533,7 @@ public class StoreController implements Initializable {
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		manageOrdersList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		
 		manageDemandList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		
 		ObservableList<String> operations = FXCollections.observableArrayList("=", ">", "<", ">=", "<=", "<>");
@@ -547,6 +543,10 @@ public class StoreController implements Initializable {
 		findYearBox.setValue("=");
 		filters = new HashMap<>();
 		reusltBooks = new ArrayList<>();
+		
+		if(!myStore.getCurrentUser().getIsManager()) {
+			managingTab.setDisable(true);
+		}
 	}
 
 }
