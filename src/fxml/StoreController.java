@@ -204,7 +204,7 @@ public class StoreController implements Initializable {
 	@FXML
     private Label addNewBookFeedBackLabel;
 	
-
+	//Methods.
 	@FXML
 	void manageAddBookAct(ActionEvent event) {
 		if(manageAddBookTitle.getText().trim().isEmpty()
@@ -228,7 +228,6 @@ public class StoreController implements Initializable {
 		}
 	}
 	
-
 	@FXML
 	void addPubBtn(ActionEvent event) {
 		if(newPubTxt.getText().trim().isEmpty()
@@ -245,13 +244,12 @@ public class StoreController implements Initializable {
 		}
 	}
 	
-
 	@FXML
 	void cancelCartAct(ActionEvent event) {
 		myStore.clearCart();
+		cartList.getItems().clear();
 	}
 	
-
 	@FXML
 	void checkOutBtnAct(ActionEvent event) {
 		try {
@@ -351,7 +349,6 @@ public class StoreController implements Initializable {
 			// TODO: handle exception
 		}
 	}
-	
 
 	@FXML
 	void editBookAct(ActionEvent event) {
@@ -376,7 +373,6 @@ public class StoreController implements Initializable {
 		}
 	}
 
-	
 	@FXML
 	void newOrderAct(ActionEvent event) {
 		if(manageNewOrderISBN.getText().trim().isEmpty()
