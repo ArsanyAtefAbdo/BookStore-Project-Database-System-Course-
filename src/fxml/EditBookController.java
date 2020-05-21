@@ -1,5 +1,6 @@
 package fxml;
 
+import java.io.IOException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -16,7 +17,12 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
+import javafx.stage.Stage;
 import javafx.util.Pair;
 
 public class EditBookController implements Initializable{
@@ -147,13 +153,36 @@ public class EditBookController implements Initializable{
 	
     @FXML
     void cancelBtnAct(ActionEvent event) {
-    	
+		//open store.
+		try {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("/fxml/Store.fxml"));
+			Parent theStore = loader.load();
+			
+			Scene storeScene = new Scene(theStore);
+			
+			//access StoreController and call the method.
+			StoreController controller = loader.getController();
+			controller.intiateData(myStore.getCurrentUser());
+			
+			//this line gets the stage information.
+			Stage window = (Stage) ((Node)event.getSource()).getScene().getWindow();
+			
+			window.setScene(storeScene);
+			window.setTitle("BookStore");
+			window.show();
+			window.setResizable(false);
+			
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}    	
     }
     
 	@Override
 	public void initialize(URL location, ResourceBundle resources) {
 		// TODO Auto-generated method stub
-		ObservableList<String> operations = FXCollections.observableArrayList("=", ">", "<");
+		ObservableList<String> operations = FXCollections.observableArrayList("=", ">", "<", ">=", "<=", "<>");
 		priceBox.setItems(FXCollections.observableArrayList(operations));
 		yearBox.setItems(FXCollections.observableArrayList(operations));
 		priceBox.setValue("=");

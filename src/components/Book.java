@@ -122,7 +122,7 @@ public class Book implements IBook {
 		sb.append(" publisher_name : " + this.publisher_name);
 		sb.append(" publication_year : " + this.publication_year);
 		sb.append(" price : " + this.price);
-		sb.append(" No_Of_Books : " + this.No_Of_Books);
+//		sb.append(" No_Of_Books : " + this.No_Of_Books);
 		sb.append(" category : " + this.category);
 		sb.append(" authors : { ");
 		for(String s : authors) {

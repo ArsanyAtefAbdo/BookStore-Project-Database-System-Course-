@@ -15,6 +15,7 @@ import com.jfoenix.controls.JFXTextField;
 
 import backend.BookStore;
 import backend.IBookStore;
+import components.IBook;
 import components.IPerson;
 import components.IUser;
 import components.Publisher;
@@ -31,12 +32,17 @@ import javafx.scene.Scene;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.stage.Stage;
+import javafx.util.Pair;
 
 public class StoreController implements Initializable {
 
 	private IBookStore myStore = BookStore.getInstance();
 
 	private IUser theUser;
+	
+    HashMap<String, Pair<String, String>>filters;
+    ArrayList<IBook> reusltBooks;
+
 
 	@FXML
 	private JFXListView<String> cartList;
@@ -419,17 +425,61 @@ public class StoreController implements Initializable {
 	
 	@FXML
     void searchAddBtnAct(ActionEvent event) {
-
+		
+    	int index = searchList.getSelectionModel().getSelectedIndex();
+    	if(index < 0 || reusltBooks.isEmpty()) {
+    		return;
+    	}
+    	IBook selectedBook = reusltBooks.get(index);
+    	myStore.addBookToCart(selectedBook);
+    	cartList.getItems().add(selectedBook.toString());
+		
     }
 
     @FXML
     void searchBtnAct(ActionEvent event) {
-
+    	filters.clear();
+    	
+    	if(!findBookNameTxt.getText().trim().isEmpty()) {
+    		filters.put("title", new Pair<String, String>("=", findBookNameTxt.getText()));
+    	}
+    	if(!findISBNTxt.getText().trim().isEmpty()) {
+    		filters.put("ISBN", new Pair<String, String>("=", findISBNTxt.getText()));
+    	}
+    	if(!findPublisherTxt.getText().trim().isEmpty()) {
+    		filters.put("publisher_name", new Pair<String, String>("=", findPublisherTxt.getText()));
+    	}
+    	if(!findAuthorTxt.getText().trim().isEmpty()) {
+    		filters.put("author", new Pair<String, String>("=", findAuthorTxt.getText()));
+    	}
+    	if(!findCategoryTxt.getText().trim().isEmpty()) {
+    		filters.put("category", new Pair<String, String>("=", findCategoryTxt.getText()));
+    	}
+    	if(!findYearTxt.getText().trim().isEmpty()) {
+    		filters.put("publication_year", new Pair<String, String>(findYearBox.getValue(), findYearTxt.getText()));
+    	}
+    	if(!findPriceTxt.getText().trim().isEmpty()) {
+    		filters.put("price", new Pair<String, String>(findPriceBox.getValue(), findPriceTxt.getText()));
+    	}
+    	
+    	reusltBooks = myStore.search(filters);
+    	
+    	searchList.getItems().clear();
+    	for(IBook book : reusltBooks) {
+    		System.out.println(book);
+    		searchList.getItems().add(book.toString());
+    	}
     }
     
     @FXML
     void removeBookCartBtnAct(ActionEvent event) {
-
+    	
+    	int index = cartList.getSelectionModel().getSelectedIndex();
+    	if(index < 0) {
+    		return;
+    	}
+    	myStore.removeBookFromCart(index);
+    	cartList.getItems().remove(index);
     }
 
 	@FXML
@@ -489,6 +539,14 @@ public class StoreController implements Initializable {
 	public void initialize(URL location, ResourceBundle resources) {
 		manageOrdersList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
 		manageDemandList.getSelectionModel().setSelectionMode(SelectionMode.MULTIPLE);
+		
+		ObservableList<String> operations = FXCollections.observableArrayList("=", ">", "<", ">=", "<=", "<>");
+		findPriceBox.setItems(FXCollections.observableArrayList(operations));
+		findYearBox.setItems(FXCollections.observableArrayList(operations));
+		findPriceBox.setValue("=");
+		findYearBox.setValue("=");
+		filters = new HashMap<>();
+		reusltBooks = new ArrayList<>();
 	}
 
 }
