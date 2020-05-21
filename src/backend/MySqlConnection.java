@@ -28,6 +28,7 @@ public class MySqlConnection implements IMySqlConnection {
 		// TODO Auto-generated constructor stub
 		try {
 			conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/bookstore","scott","database");
+			conn.setAutoCommit(false);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			printSQLException(e);
@@ -123,6 +124,7 @@ public class MySqlConnection implements IMySqlConnection {
 				
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block
+				rollback();
 				printSQLException(e);
 				return false;
 			}
@@ -137,6 +139,7 @@ public class MySqlConnection implements IMySqlConnection {
 					}
 				} catch (SQLException e1) {
 					// TODO Auto-generated catch block
+					rollback();
 					printSQLException(e1);
 					return false;
 				}
@@ -153,12 +156,14 @@ public class MySqlConnection implements IMySqlConnection {
 						stmt.executeUpdate(sqlBuilder.toString());
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
+						rollback();
 						printSQLException(e);
 						return false;
 					}
 				}
 			}
 		}
+		commit();
 		return true;
 	}
 
@@ -197,10 +202,12 @@ public class MySqlConnection implements IMySqlConnection {
 				stmt.executeUpdate(sqlBuilder.toString());
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
+				rollback();
 				printSQLException(e1);
 				return false;
 			}
 		}
+		commit();
 		return true;
 	}
 
@@ -235,14 +242,16 @@ public class MySqlConnection implements IMySqlConnection {
 				stmt.executeUpdate(sqlBuilder.toString());
 			} catch (SQLException e1) {
 				// TODO Auto-generated catch block
+				rollback();
 				printSQLException(e1);
 				return false;
 			}
 		}
+		commit();
 		return true;
 	}
 	
-	public static void printSQLException(SQLException ex) {
+	private static void printSQLException(SQLException ex) {
         for (Throwable e: ex) {
             if (e instanceof SQLException) {
                 e.printStackTrace(System.err);
@@ -257,5 +266,28 @@ public class MySqlConnection implements IMySqlConnection {
             }
         }
     }
+	
+	private void commit() {
+		if(conn != null) {
+			try {
+				conn.commit();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				printSQLException(e);
+			}
+		}
+	}
+	
+	private void rollback() {
+		
+		if(conn != null) {
+			try {
+				conn.rollback();
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				printSQLException(e);
+			}
+		}
+	}
 
 }
